@@ -1,21 +1,40 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import logo from './assets/friendship.jpeg'
+
+
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <Header />
+  <img class="logo-image" alt="FriendShip logo" :src="logo" />
+  <router-view></router-view>
 </template>
 
 <style>
+@import "./css/_variables.css";
+@import "./css/_global.css";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  #app {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .logo-image {
+    width: 100%;
+  }
 }
 </style>

@@ -1,0 +1,27 @@
+/* GENERAL */
+html {
+    box-sizing: border-box;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.1rem;
+    background-color: var(--main-bg-color);
+    color: #fff;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0px;
+}
+
+/* TEXT */
+h1 {
+    font-size: 1.6rem;
+}
+
+/* IMAGES */
+.logo-image {
+    width: 650px;
+}
