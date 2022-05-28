@@ -3,4 +3,7 @@
     --main-font: 'monospace';
     --font-size: 1.3rem;
     --font-header: 1.5rem;
+    --font-text: #fff;
+    --header-height: 80px;
+    --primary-color: #ffc73b;
 }

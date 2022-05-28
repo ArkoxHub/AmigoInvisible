@@ -1,12 +1,12 @@
 /* GENERAL */
 html {
     box-sizing: border-box;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 1.1rem;
     background-color: var(--main-bg-color);
-    color: #fff;
+    color: var(--font-text);
 }
 
 *,
@@ -14,6 +14,7 @@ html {
 *:after {
     box-sizing: inherit;
     margin: 0px;
+    padding: 0px;
 }
 
 /* TEXT */
@@ -21,7 +22,54 @@ h1 {
     font-size: 1.6rem;
 }
 
+a {
+    color: var(--font-text);
+}
+
 /* IMAGES */
 .logo-image {
     width: 650px;
+}
+
+/* BUTTONS */
+.primary-button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background: var(--primary-color);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-button-link span {
+    position: relative;
+    z-index: 2;
+    transform: .3s ease all;
+}
+
+.primary-button-link::after {
+    content: "";
+    width: 1px;
+    height: 1px;
+    background: none;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transition: .4s ease-in-out all;
+    border-radius: 100px;
+    transform-origin: center;
+}
+
+.primary-button-link:hover::after {
+    transform: scale(300);
+    background: dodgerblue;
 }

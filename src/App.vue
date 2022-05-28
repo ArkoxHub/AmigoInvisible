@@ -8,7 +8,6 @@ import logo from './assets/friendship.jpeg'
 <template>
   <Header />
   <div class="container">
-    <img class="logo-image" alt="FriendShip logo" :src="logo" />
     <router-view></router-view>
   </div>
 </template>
@@ -23,6 +22,7 @@ import logo from './assets/friendship.jpeg'
   justify-content: center;
   align-items: center;
   margin: auto;
+  width: 75%;
 }
 
 @media (max-width: 600px) {
