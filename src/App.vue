@@ -7,25 +7,26 @@ import logo from './assets/friendship.jpeg'
 
 <template>
   <Header />
-  <img class="logo-image" alt="FriendShip logo" :src="logo" />
-  <router-view></router-view>
+  <div class="container">
+    <img class="logo-image" alt="FriendShip logo" :src="logo" />
+    <router-view></router-view>
+  </div>
 </template>
 
 <style>
 @import "./css/_variables.css";
 @import "./css/_global.css";
 
-#app {
+.container {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  width: 75%;
   margin: auto;
 }
 
 @media (max-width: 600px) {
-  #app {
+  .container {
     width: 90%;
   }
 
