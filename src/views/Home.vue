@@ -2,17 +2,17 @@
 import uno from '../assets/uno.png'
 import dos from '../assets/dos.png'
 import tres from '../assets/tres.png'
-import Sorteo from '../components/Sorteo.vue'
+import Draw from '../components/Draw.vue'
 </script>
 
 <template>
     <section class="home-info">
-        <h1>Sorteo amigo invisible</h1>
+        <h1 class="main-title">Sorteo amigo invisible</h1>
         <p class="home-description">En pocos pasos, podrás realizar el sorteo del amigo invisible gratis y recibir toda
             la información en el
             correo electrónico de cada participante.</p>
         <ul class="home-steps-todo">
-            Pasos a seguir:
+            <span>Pasos a seguir</span>
             <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena la siguiente información.</li>
             <li><img :src="dos" alt="Imagen número 2" class="step-icon">Revisa que todo esté en orden y dale a
                 enviar.</li>
@@ -24,41 +24,38 @@ import Sorteo from '../components/Sorteo.vue'
     </section>
 
     <section class="draw-container">
-        <!-- Sorteo -->
-        <Sorteo />
+        <!-- DRAW -->
+        <Draw />
     </section>
-
-    <!-- DELETE ONCE FOOTER IS DEVELOPED -->
-    <a style="position: absolute; bottom: 20px;" href="https://www.flaticon.es" target="_blank" title="Iconos">Iconos
-        creados por
-        Freepik -
-        Flaticon</a>
 </template>
 
 <style scoped>
 .home-info {
     display: block;
-    margin-bottom: 60px;
-}
-
-.home-info h1 {
-    text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 2.5rem;
 }
 
 .home-description {
-    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
+}
+
+.home-steps-todo span {
+    display: block;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--primary-color);
+    width: 10rem;
+    padding-bottom: 1rem;
 }
 
 .home-steps-todo li {
     text-decoration: none;
     list-style: none;
-    line-height: 50px;
+    margin-bottom: 1.1rem;
 }
 
 .step-icon {
-    width: 28px;
-    margin-right: 7px;
+    width: 1.4rem;
+    margin-right: .3rem;
 }
 
 .draw-container {

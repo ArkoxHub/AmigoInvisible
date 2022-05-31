@@ -1,8 +1,5 @@
 <script setup>
 import Header from './components/Header.vue'
-import logo from './assets/friendship.jpeg'
-
-
 </script>
 
 <template>
@@ -10,6 +7,7 @@ import logo from './assets/friendship.jpeg'
   <div class="container">
     <router-view></router-view>
   </div>
+  <!-- Footer needed -->
 </template>
 
 <style>
@@ -20,9 +18,10 @@ import logo from './assets/friendship.jpeg'
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
   margin: auto;
-  width: 75%;
+  width: 85ch;
+  margin-top: 7rem;
+  z-index: 1;
 }
 
 @media (max-width: 600px) {

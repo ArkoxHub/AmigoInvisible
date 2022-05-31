@@ -7,13 +7,13 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
         <div class="left-nav">
             <router-link to="/" class="left-nav-link">
                 <img class="logo-image" :src="cajaRegalo" alt="Logotipo Amigo Invisible Online">
-                <router-link to="/">Amigo Invisible</router-link>
+                <router-link to="/">Amigo <span class="span-color">invisible</span></router-link>
             </router-link>
         </div>
         <div class="right-nav">
-            <router-link to="/">Regalos</router-link>
-            <router-link to="/">Wishlist</router-link>
-            <router-link to="/">Recuperación</router-link>
+            <router-link to="/regalos"><span class="span-color-link">Regalos</span></router-link>
+            <router-link to="/lista-de-deseos">Wishlist</router-link>
+            <router-link to="/recuperacion-sorteo">Recuperación</router-link>
         </div>
     </nav>
 </template>
@@ -27,10 +27,14 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
     justify-content: space-between;
     align-items: center;
     height: var(--header-height);
-    margin-bottom: 50px;
     border-bottom: 1px solid var(--primary-color);
     box-shadow: 0px -2px 13px 1px #ffc73b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 5;
+    background: var(--main-bg-color);
 }
 
 .left-nav-link {
@@ -45,6 +49,7 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
     height: var(--header-height);
     line-height: var(--header-height);
     text-align: center;
+    text-transform: uppercase;
 }
 
 .left-nav,
@@ -74,8 +79,7 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
 
 .right-nav a {
     text-align: center;
-    min-width: 200px;
-    max-width: 200px;
+    width: 10rem;
 }
 
 .right-nav a:hover {
@@ -88,6 +92,15 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
 .logo-image {
     display: block;
     width: 40px;
+}
+
+.span-color,
+.span-color-link {
+    color: var(--primary-color);
+}
+
+.span-color-link:hover {
+    color: #333;
 }
 
 @media only screen and (max-width: 600px) {}

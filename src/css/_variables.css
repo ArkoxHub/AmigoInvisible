@@ -1,9 +1,13 @@
 :root {
+    /** COLORS **/
     --main-bg-color: #0f172a;
+    --primary-color: #ffc73b;
+    --error-color: #f16558;
+    /** FONTS **/
     --main-font: 'monospace';
     --font-size: 1.3rem;
     --font-header: 1.5rem;
     --font-text: #fff;
-    --header-height: 80px;
-    --primary-color: #ffc73b;
+    /** MEASURES **/
+    --header-height: 4.4rem;
 }

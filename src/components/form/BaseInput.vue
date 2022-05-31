@@ -1,8 +1,12 @@
 <script setup>
+import UniqueID from '../../features/UniqueID'
+const uuid = UniqueID().getID()
+
 const props = defineProps({
     label: String,
     placeholder: String,
-    modelValue: [String, Number]
+    modelValue: [String, Number],
+    className: String
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -14,9 +18,9 @@ function updateValue(value) {
 
 <template>
     <div class="form-control">
-        <label v-if="props.label">{{ props.label }}</label>
-        <input v-bind="$attrs" :placeholder="placeholder" class="input-field" :value="modelValue"
-            @input="updateValue($event.target.value)">
+        <label :for="uuid" v-if="props.label">{{ props.label }}</label>
+        <input :id="uuid" v-bind="$attrs" :placeholder="placeholder" :class="className" class="input-field"
+            :value="modelValue" @input="updateValue($event.target.value)">
     </div>
 </template>
 
@@ -24,10 +28,5 @@ function updateValue(value) {
 label {
     display: block;
     margin: 0px 0px 3px 4px;
-}
-
-input {
-    width: 250px;
-    padding: 10px;
 }
 </style>

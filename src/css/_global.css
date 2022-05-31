@@ -18,7 +18,9 @@ html {
 }
 
 /* TEXT */
-h1 {
+.main-title {
+    text-align: center;
+    margin-bottom: 2rem;
     font-size: 1.6rem;
 }
 
@@ -26,10 +28,6 @@ a {
     color: var(--font-text);
 }
 
-/* IMAGES */
-.logo-image {
-    width: 650px;
-}
 
 /* BUTTONS */
 .primary-button-link {
@@ -47,6 +45,7 @@ a {
     border-radius: 5px;
     position: relative;
     overflow: hidden;
+    color: black;
 }
 
 .primary-button-link span {
@@ -72,4 +71,32 @@ a {
 .primary-button-link:hover::after {
     transform: scale(300);
     background: dodgerblue;
+}
+
+/** FORM **/
+.input-field {
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    width: 250px;
+    height: 50px;
+    padding-left: 20px;
+    border: 2px solid var(--main-bg-color);
+}
+
+select.input-field {
+    padding: 9.6px;
+}
+
+.input-field:focus {
+    border: 3px solid var(--main-bg-color);
+}
+
+.input-header {
+    border: 2px solid var(--primary-color);
+}
+
+.input-header:focus {
+    border: 3px solid var(--primary-color);
 }
