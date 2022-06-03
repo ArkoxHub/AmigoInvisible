@@ -24,7 +24,7 @@ import Header from './components/Header.vue'
   z-index: 1;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .container {
     width: 90%;
   }

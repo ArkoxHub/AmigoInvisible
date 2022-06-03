@@ -5,7 +5,7 @@ const uuid = UniqueID().getID();
 const props = defineProps({
     label: String,
     placeholder: String,
-    options: Array,
+    options: [Array, Object],
     participant: Object,
     modelValue: [String, Number]
 })

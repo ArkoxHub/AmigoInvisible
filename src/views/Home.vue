@@ -8,6 +8,7 @@ import Draw from '../components/Draw.vue'
 <template>
     <section class="home-info">
         <h1 class="main-title">Sorteo amigo invisible</h1>
+        <p style="color: red; margin-bottom: 20px;">PÁGINA WEB EN DESARROLLO</p>
         <p class="home-description">En pocos pasos, podrás realizar el sorteo del amigo invisible gratis y recibir toda
             la información en el
             correo electrónico de cada participante.</p>
@@ -18,9 +19,13 @@ import Draw from '../components/Draw.vue'
                 enviar.</li>
             <li><img :src="tres" alt="Imagen número 2" class="step-icon">En caso de que alguien no haya
                 recibido el correo, puedes volver a recupear la información introducida previamente en
-                <router-link to="#">recuperación</router-link>
+                <router-link to="recuperacion-sorteo" class="router-link">recuperación</router-link>
             </li>
         </ul>
+
+        <span class="home-remainder">🍀Si necesitas ideas para regalos, visita la sección <router-link
+                to="regalos-amigo-invisible" class="router-link">
+                regalos</router-link></span>
     </section>
 
     <section class="draw-container">

@@ -17,7 +17,7 @@ const routes = [
         component: NotFound
     },
     {
-        path: '/regalos',
+        path: '/regalos-amigo-invisible',
         name: 'Gifts',
         component: Gifts
     },

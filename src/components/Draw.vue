@@ -1,6 +1,7 @@
 <template>
     <form action="#">
         <!-- HEADER -->
+        <!-- TODO Close button to remove a card -->
         <div class="draw-header">
             <BaseInput label="Nombre del sorteo*" type="text" placeholder="Título del sorteo" v-model="draw.name"
                 className="input-header" />
@@ -11,21 +12,24 @@
 
         <!-- PARTICIPANTS -->
         <div class="participant" v-for="item in totalParticipants">
-            <Participant @addParticipant="addNewParticipant" :participants="draw.participants"
+            <Participant @addParticipant="addNewParticipant" :participants="participantsMultiSelect"
                 :backgroundColor="this.backgroundsColors[item - 1]" :participantID="item" />
         </div>
 
         <!-- BUTTONS -->
         <div class="draw-actions">
             <button class="primary-button-link"
-                @click.prevent="this.totalParticipants++; randomGradient;"><span>Agregar</span></button>
+                @click.prevent="this.totalParticipants++; randomGradient();"><span>Agregar</span></button>
             <button class="primary-button-link" @click.prevent="validateForm"><span>Continuar</span></button>
         </div>
 
         <!-- TEST -->
-        <div class="test-zone" style="margin-top: 50px; list-style: none;">
+        <div class="test-zone" style="margin-top: 50px; margin-bottom: 50px; list-style: none;">
             <li v-for="(item, index) in draw" :key="index">
-                {{ index }}: {{ item }}
+                <span v-if="index !== 'participants'">{{ index }}: {{ item }}</span>
+            </li>
+            <li v-for="(item, index) in draw.participants" :key="index">
+                <span>{{ index }}: {{ item }}</span>
             </li>
         </div>
     </form>
@@ -48,6 +52,7 @@ export default {
             },
             totalParticipants: 3,
             backgroundsColors: [],
+            participantsMultiSelect: []
         }
     },
     beforeMount() {
@@ -57,6 +62,7 @@ export default {
     },
     methods: {
         validateForm(event) {
+            // TODO Form validation before next step - review code
             alert("Estamos trabajando en el página web")
         },
         randomGradient() {
@@ -81,7 +87,13 @@ export default {
         },
         addOrUpdate(array, element) {
             const i = array.findIndex(_element => _element.participantID === element.participantID);
-            i > -1 ? array[i].element : array.push(element);
+            if (i > -1) {
+                array[i].element
+            } else {
+                array.push(element)
+                let p = { value: element.name, label: element.name, id: element.participantID }
+                this.participantsMultiSelect.push(p)
+            }
         }
     },
 }
@@ -102,5 +114,9 @@ export default {
     flex-flow: row wrap;
     justify-content: space-evenly;
     margin-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    /* TODO MOBILE RESPONSIVEf */
 }
 </style>

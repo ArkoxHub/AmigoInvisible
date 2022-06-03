@@ -4,21 +4,94 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
 
 <template>
     <nav class="main-nav">
+        <!-- LOGO WEB -->
         <div class="left-nav">
             <router-link to="/" class="left-nav-link">
                 <img class="logo-image" :src="cajaRegalo" alt="Logotipo Amigo Invisible Online">
                 <router-link to="/">Amigo <span class="span-color">invisible</span></router-link>
             </router-link>
         </div>
-        <div class="right-nav">
-            <router-link to="/regalos"><span class="span-color-link">Regalos</span></router-link>
+        <!-- DESKTOP NAVIGATION -->
+        <div class="right-nav desktop-nav">
+            <router-link to="/regalos-amigo-invisible"><span class="span-color-link">Regalos</span></router-link>
+            <router-link to="/lista-de-deseos">Wishlist</router-link>
+            <router-link to="/recuperacion-sorteo">Recuperación</router-link>
+        </div>
+        <!-- HAMBURGUER -->
+        <div class="hamburger" @click="toggleHamburger" :class="hamburgerOpen ? 'hamburger-is-open active' : ''">
+            <div class="hamburger_item hamburger_item_first"></div>
+            <div class="hamburger_item hamburger_item_middle"></div>
+            <div class="hamburger_item hamburger_item_last"></div>
+        </div>
+        <!-- MOBILE NAVIGATION -->
+        <div class="right-nav mobile-nav">
+            <!-- END HAMBURGUER -->
+            <router-link to="/regalos-amigo-invisible"><span class="span-color-link">Regalos</span></router-link>
             <router-link to="/lista-de-deseos">Wishlist</router-link>
             <router-link to="/recuperacion-sorteo">Recuperación</router-link>
         </div>
     </nav>
 </template>
 
-<style scoped>
+<script>
+export default {
+    data() {
+        return {
+            hamburgerOpen: false,
+            height: "0px",
+            opacity: "0",
+            scrollY: 0,
+        }
+    },
+
+    computed: {
+        computedHeight() {
+            return this.height;
+        },
+        computedOpacity() {
+            return this.opacity;
+        },
+        getScrollY() {
+            return this.scrollY;
+        },
+    },
+
+    mounted() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+
+    unmounted() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
+
+    methods: {
+        toggleHamburger() {
+            let container = document.getElementById("mobile-container");
+            let containerMaxHeight = container.scrollHeight + "px";
+
+            this.hamburgerOpen = this.hamburgerOpen == true ? false : true;
+
+            if (this.hamburgerOpen) {
+                this.opacity = "1";
+                this.height = containerMaxHeight;
+            } else {
+                this.opacity = "0";
+                this.height = "0px";
+            }
+        },
+        handleScroll() {
+            this.scrollY = window.scrollY;
+        },
+    },
+}
+</script>
+
+<style scoped lang="scss">
+.mobile-nav,
+.hamburger {
+    display: none !important;
+}
+
 /** SHARED NAV */
 .main-nav {
     width: 100%;
@@ -103,5 +176,69 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
     color: #333;
 }
 
-@media only screen and (max-width: 600px) {}
+
+
+/* HAMBURGUER */
+
+.hamburger {
+    height: 30px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: 5rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &_item {
+        height: 2px;
+        width: 100%;
+        background: var(--primary-color);
+        transition: transform 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
+            opacity 300ms linear;
+
+        &_first {
+            .hamburger-is-open & {
+                transform: translate(0, 14px) rotate(44deg);
+            }
+        }
+
+        &_middle {
+            .hamburger-is-open & {
+                opacity: 0;
+            }
+        }
+
+        &_last {
+            .hamburger-is-open & {
+                transform: translate(0, -14px) rotate(-44deg);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1135px) {
+    .hamburger {
+        display: flex !important;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .left-nav {
+        margin-left: 0rem;
+    }
+
+    .hamburger {
+        right: 1.5rem;
+    }
+}
+
+/* TODO MOBILE RESPONSIVE */
 </style>

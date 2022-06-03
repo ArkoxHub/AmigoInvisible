@@ -8,6 +8,10 @@
     --font-size: 1.3rem;
     --font-header: 1.5rem;
     --font-text: #fff;
+    --font-text-secondary: #333;
     /** MEASURES **/
     --header-height: 4.4rem;
+
+    --ms-font-size: 1.3rem;
+    --ms-tag-font-weight: 0;
 }

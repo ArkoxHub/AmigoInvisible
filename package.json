@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.4.2",
     "postcss-nested": "^5.0.6",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"

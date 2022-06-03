@@ -28,6 +28,10 @@ a {
     color: var(--font-text);
 }
 
+.router-link {
+    color: var(--primary-color);
+}
+
 
 /* BUTTONS */
 .primary-button-link {
@@ -45,7 +49,8 @@ a {
     border-radius: 5px;
     position: relative;
     overflow: hidden;
-    color: black;
+    color: var(--font-text-secondary);
+    font-weight: 500;
 }
 
 .primary-button-link span {
@@ -71,6 +76,12 @@ a {
 .primary-button-link:hover::after {
     transform: scale(300);
     background: dodgerblue;
+}
+
+@media only screen and (max-width: 600px) {
+    .primary-button-link {
+        width: 150px;
+    }
 }
 
 /** FORM **/
@@ -99,4 +110,29 @@ select.input-field {
 
 .input-header:focus {
     border: 3px solid var(--primary-color);
+}
+
+@media only screen and (max-width: 600px) {
+
+    .input-field,
+    .form-control,
+    .multiselect,
+    .exclude-container {
+        width: 100%;
+    }
+}
+
+::placeholder {
+    color: #9CA3AF;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #9CA3AF;
 }

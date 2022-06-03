@@ -1,27 +1,31 @@
 <template>
     <fieldset :style="{ 'background': backgroundColor }">
-        <legend>Participante {{ participantID }}</legend>
+        <legend v-if="participant.name == ''">Participante {{ participantID }}</legend>
+        <legend v-else>Participante {{ participantID }}: {{ participant.name }}</legend>
         <div class="draw-participants">
             <BaseInput @blur="$emit('addParticipant', participant)" label="Nombre*" type="text"
-                v-model="participant.name" />
+                v-model="participant.name" minLength="3" maxLength="25" placeholder="Nombre" />
             <BaseInput @blur="$emit('addParticipant', participant)" label="Email*" type="email"
-                v-model="participant.email" />
-            <BaseSelect @blur="$emit('addParticipant', participant)" label="Excluir" :options="participants"
-                :participant="this.participant" v-model="participant.exclude" />
+                v-model="participant.email" maxLength="50" placeholder="Email" />
+            <div class="exclude-container">
+                <label for="exclude">Excluir</label>
+                <Multiselect class="input-field" v-model="participant.exclude" :options="deleteItself" mode="multiple"
+                    :close-on-select="false" @blur="$emit('addParticipant', participant)" placeholder="Excluir a..."
+                    noOptionsText="No hay participantes" :create-option="true" />
+            </div>
         </div>
     </fieldset>
-
 </template>
 
 <script>
 import BaseInput from '../components/form/BaseInput.vue'
-import BaseSelect from '../components/form/BaseSelect.vue'
+import Multiselect from '@vueform/multiselect'
 
 export default {
-    components: { BaseInput, BaseSelect },
+    components: { BaseInput, Multiselect },
     props: {
         participants: {
-            type: Array,
+            type: [Array, Object],
             required: false
         },
         backgroundColor: {
@@ -39,13 +43,26 @@ export default {
                 participantID: this.participantID,
                 name: '',
                 email: '',
-                exclude: '',
-                wishlist: ''
-            }
+                exclude: [],
+                wishlist: '',
+            },
         }
     },
+    methods: {
+        scrollToLastParticipant() {
+            // TODO Scroll to last participant added
+        }
+    },
+    computed: {
+        deleteItself() {
+            return this.participants.filter(item => item.id != this.participantID)
+        }
+    }
 }
 </script>
+
+<style src="@vueform/multiselect/themes/default.css">
+</style>
 
 <style scoped>
 fieldset {
@@ -65,5 +82,13 @@ legend {
     justify-content: space-evenly;
     align-items: center;
     padding: 1.2rem;
+}
+
+.multiselect {
+    color: #333;
+    margin: 0px;
+    margin-top: .17rem;
+    font-size: .8rem;
+    min-height: auto;
 }
 </style>
