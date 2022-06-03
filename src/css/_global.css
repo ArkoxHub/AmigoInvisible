@@ -51,6 +51,7 @@ a {
     overflow: hidden;
     color: var(--font-text-secondary);
     font-weight: 500;
+    z-index: 1;
 }
 
 .primary-button-link span {
@@ -112,13 +113,33 @@ select.input-field {
     border: 3px solid var(--primary-color);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
 
     .input-field,
     .form-control,
     .multiselect,
     .exclude-container {
         width: 100%;
+    }
+
+    input[type="color"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="email"],
+    input[type="month"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="time"],
+    input[type="url"],
+    input[type="week"],
+    select:focus,
+    .multiselect,
+    textarea {
+        font-size: 16px;
     }
 }
 

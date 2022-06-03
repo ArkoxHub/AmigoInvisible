@@ -9,7 +9,7 @@
                 v-model="participant.email" maxLength="50" placeholder="Email" />
             <div class="exclude-container">
                 <label for="exclude">Excluir</label>
-                <Multiselect class="input-field" v-model="participant.exclude" :options="deleteItself" mode="multiple"
+                <Multiselect class="input-field" v-model="participant.exclude" :options="deleteItself" mode="tags"
                     :close-on-select="false" @blur="$emit('addParticipant', participant)" placeholder="Excluir a..."
                     noOptionsText="No hay participantes" :create-option="true" />
             </div>
@@ -90,5 +90,6 @@ legend {
     margin-top: .17rem;
     font-size: .8rem;
     min-height: auto;
+    z-index: 2;
 }
 </style>
