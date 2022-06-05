@@ -108,8 +108,10 @@ export default {
         },
         async closeCard(event) {
             const selectedCard = event.target.parentNode.parentNode;
+            console.log(selectedCard);
             const form = document.getElementById("draw-form");
             await form.removeChild(document.getElementById(selectedCard.id))
+            console.log(document.getElementsByClassName("participant").length)
         }
     },
 }

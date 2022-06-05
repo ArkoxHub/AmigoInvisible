@@ -44,6 +44,7 @@ a {
     opacity: 0;
     transition: ease .5s;
     width: 100%;
+    visibility: hidden;
 }
 
 
