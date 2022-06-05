@@ -7,6 +7,7 @@ html {
     font-size: 1.1rem;
     background-color: var(--main-bg-color);
     color: var(--font-text);
+    letter-spacing: .2px;
 }
 
 *,
@@ -15,6 +16,11 @@ html {
     box-sizing: inherit;
     margin: 0px;
     padding: 0px;
+}
+
+.backScene {
+    opacity: .5;
+    transition: all .5s;
 }
 
 /* TEXT */
@@ -32,6 +38,21 @@ a {
     color: var(--primary-color);
 }
 
+.d-none {
+    display: flex !important;
+    height: 0px;
+    opacity: 0;
+    transition: ease .5s;
+    width: 100%;
+}
+
+
+.d-active {
+    display: flex !important;
+    transition: ease .5s;
+    height: 233px;
+    opacity: 1;
+}
 
 /* BUTTONS */
 .primary-button-link {
@@ -79,7 +100,7 @@ a {
     background: dodgerblue;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
     .primary-button-link {
         width: 150px;
     }
@@ -140,6 +161,11 @@ select.input-field {
     .multiselect,
     textarea {
         font-size: 16px;
+    }
+
+    .input-field,
+    .input-header {
+        margin-bottom: 10px !important;
     }
 }
 

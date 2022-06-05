@@ -1,14 +1,28 @@
-<script setup>
-import Header from './components/Header.vue'
-</script>
-
 <template>
-  <Header />
-  <div class="container">
+  <Header @toggleContainerOpacity="toggleOpacity" />
+  <div :class="this.isHamburgerActive == false ? 'container' : 'container backScene'">
     <router-view></router-view>
   </div>
   <!-- Footer needed -->
 </template>
+
+<script>
+import Header from './components/Header.vue'
+
+export default {
+  components: { Header },
+  data() {
+    return {
+      isHamburgerActive: ''
+    }
+  },
+  methods: {
+    toggleOpacity(value) {
+      this.isHamburgerActive = value
+    }
+  },
+}
+</script>
 
 <style>
 @import "./css/_variables.css";
@@ -22,9 +36,10 @@ import Header from './components/Header.vue'
   width: 85ch;
   margin-top: 7rem;
   z-index: 1;
+  position: relative;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .container {
     width: 90%;
   }

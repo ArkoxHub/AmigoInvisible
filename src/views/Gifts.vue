@@ -8,6 +8,7 @@ const props = defineProps({
 <template>
     <h1>Regalos</h1>
     <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
+    <!-- TODO Look why iframes are not shown in some browsers -->
     <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"
         src="https://rcm-eu.amazon-adsystem.com/e/cm?ref=tf_til&t=arkox-21&m=amazon&o=30&p=8&l=as1&IS2=1&asins=B09GWPYXVH&linkId=6843129613ffce21c6b3ff9a806e74cc&bc1=ffffff&amp;lt1=_blank&fc1=333333&lc1=0066c0&bg1=ffffff&f=ifr">
     </iframe>

@@ -24,11 +24,12 @@ import cajaRegalo from '../assets/caja-de-regalo.png'
             <div class="hamburger_item hamburger_item_last"></div>
         </div>
         <!-- MOBILE NAVIGATION -->
-        <div class="right-nav mobile-nav">
+        <div class="right-nav-mobile" :class="hamburgerOpen ? 'd-active' : 'd-none'">
             <!-- END HAMBURGUER -->
-            <router-link to="/regalos-amigo-invisible"><span class="span-color-link">Regalos</span></router-link>
-            <router-link to="/lista-de-deseos">Wishlist</router-link>
-            <router-link to="/recuperacion-sorteo">Recuperación</router-link>
+            <router-link @click="toggleHamburguer" to="/regalos-amigo-invisible"><span
+                    class="span-color-link">Regalos</span></router-link>
+            <router-link @click="toggleHamburguer" to="/lista-de-deseos">Wishlist</router-link>
+            <router-link @click="toggleHamburguer" to="/recuperacion-sorteo">Recuperación</router-link>
         </div>
     </nav>
 </template>
@@ -38,56 +39,57 @@ export default {
     data() {
         return {
             hamburgerOpen: false,
-            height: "0px",
-            opacity: "0",
-            scrollY: 0,
+            windowWith: '',
+            navElement: ''
         }
     },
 
     computed: {
-        computedHeight() {
-            return this.height;
-        },
-        computedOpacity() {
-            return this.opacity;
-        },
-        getScrollY() {
-            return this.scrollY;
-        },
+        getWindowWidth() {
+            return window.innerWidth;
+        }
     },
 
     mounted() {
-        window.addEventListener("scroll", this.handleScroll);
+        window.addEventListener("resize", this.handleWidthChange);
+        window.addEventListener("click", this.toggleNavClickOutside);
+        this.navElement = document.querySelector(".main-nav");
     },
 
     unmounted() {
-        window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("resize", this.handleWidthChange);
+        window.removeEventListener("click", this.toggleNavClickOutside);
+
     },
 
     methods: {
         toggleHamburger() {
-            let container = document.getElementById("mobile-container");
-            let containerMaxHeight = container.scrollHeight + "px";
-
-            this.hamburgerOpen = this.hamburgerOpen == true ? false : true;
-
-            if (this.hamburgerOpen) {
-                this.opacity = "1";
-                this.height = containerMaxHeight;
-            } else {
-                this.opacity = "0";
-                this.height = "0px";
+            this.hamburgerOpen = this.hamburgerOpen == false ? true : false;
+            this.$emit('toggleContainerOpacity', this.hamburgerOpen)
+        },
+        handleWidthChange() {
+            this.windowWith = window.innerWidth;
+            if (this.windowWith >= "1135") {
+                this.hamburgerOpen = false;
+                this.$emit('toggleContainerOpacity', this.hamburgerOpen)
             }
         },
-        handleScroll() {
-            this.scrollY = window.scrollY;
+        toggleHamburguer() {
+            this.hamburgerOpen = this.hamburgerOpen == false ? true : false;
+            this.$emit('toggleContainerOpacity', this.hamburgerOpen)
         },
+        toggleNavClickOutside(event) {
+            const isClickOnNav = this.navElement.contains(event.target);
+            if (!isClickOnNav) {
+                this.hamburgerOpen = false;
+                this.$emit('toggleContainerOpacity', this.hamburgerOpen)
+            }
+        }
     },
 }
 </script>
 
 <style scoped lang="scss">
-.mobile-nav,
 .hamburger {
     display: none !important;
 }
@@ -96,10 +98,9 @@ export default {
 .main-nav {
     width: 100%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    height: var(--header-height);
     border-bottom: 1px solid var(--primary-color);
     box-shadow: 0px -2px 13px 1px #ffc73b;
     position: fixed;
@@ -176,8 +177,6 @@ export default {
     color: #333;
 }
 
-
-
 /* HAMBURGUER */
 
 .hamburger {
@@ -188,6 +187,7 @@ export default {
     justify-content: space-between;
     position: absolute;
     right: 5rem;
+    top: 1.3rem;
 
     &:hover {
         cursor: pointer;
@@ -221,6 +221,10 @@ export default {
 }
 
 @media only screen and (max-width: 1135px) {
+    .main-nav {
+        display: block;
+    }
+
     .hamburger {
         display: flex !important;
     }
@@ -228,17 +232,35 @@ export default {
     .desktop-nav {
         display: none;
     }
+
+    .left-nav {
+        justify-content: flex-start;
+        height: 100%;
+        width: 100%;
+    }
+
+    .right-nav-mobile {
+        flex-flow: column nowrap;
+        width: 100%;
+        align-items: flex-start;
+        margin-left: 125px;
+    }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
     .left-nav {
         margin-left: 0rem;
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: row nowrap;
+    }
+
+    .right-nav-mobile {
+        margin-left: 25px;
     }
 
     .hamburger {
         right: 1.5rem;
     }
 }
-
-/* TODO MOBILE RESPONSIVE */
 </style>

@@ -1,7 +1,6 @@
 <template>
-    <form action="#">
+    <form action="#" id="draw-form">
         <!-- HEADER -->
-        <!-- TODO Close button to remove a card -->
         <div class="draw-header">
             <BaseInput label="Nombre del sorteo*" type="text" placeholder="Título del sorteo" v-model="draw.name"
                 className="input-header" />
@@ -11,7 +10,9 @@
         </div>
 
         <!-- PARTICIPANTS -->
-        <div class="participant" v-for="item in totalParticipants">
+        <div :id="'participant' + item" class="participant" v-for="item in totalParticipants">
+            <span @click="closeCard" class="close-icon" v-if="item > 3"><img src="../assets/close.png"
+                    alt="Cerrar tarjeta"></span>
             <Participant @addParticipant="addNewParticipant" :participants="participantsMultiSelect"
                 :backgroundColor="this.backgroundsColors[item - 1]" :participantID="item" />
         </div>
@@ -19,7 +20,7 @@
         <!-- BUTTONS -->
         <div class="draw-actions">
             <button class="primary-button-link"
-                @click.prevent="this.totalParticipants++; randomGradient();"><span>Agregar</span></button>
+                @click.prevent="addParticipantCard(); randomGradient();"><span>Agregar</span></button>
             <button class="primary-button-link" @click.prevent="validateForm"><span>Continuar</span></button>
         </div>
 
@@ -52,7 +53,7 @@ export default {
             },
             totalParticipants: 3,
             backgroundsColors: [],
-            participantsMultiSelect: []
+            participantsMultiSelect: [],
         }
     },
     beforeMount() {
@@ -63,7 +64,8 @@ export default {
     methods: {
         validateForm(event) {
             // TODO Form validation before next step - review code
-            alert("Estamos trabajando en el página web")
+            alert("Estamos trabajando en la página web.")
+            console.log(event)
         },
         randomGradient() {
             const newColor1 = this.populate('#');
@@ -94,6 +96,20 @@ export default {
                 let p = { value: element.name, label: element.name, id: element.participantID }
                 this.participantsMultiSelect.push(p)
             }
+        },
+        async addParticipantCard() {
+            await this.totalParticipants++;
+            const lastCard = document.getElementsByClassName("participant")[document.getElementsByClassName("participant").length - 1]
+            const distanceFromTop = window.scrollY + lastCard.getBoundingClientRect().top
+            window.scrollTo({
+                top: distanceFromTop,
+                behavior: 'smooth'
+            })
+        },
+        async closeCard(event) {
+            const selectedCard = event.target.parentNode.parentNode;
+            const form = document.getElementById("draw-form");
+            await form.removeChild(document.getElementById(selectedCard.id))
         }
     },
 }
@@ -107,6 +123,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    position: relative
 }
 
 .draw-actions {
@@ -116,7 +133,21 @@ export default {
     margin-top: 1rem;
 }
 
-@media only screen and (max-width: 600px) {
-    /* TODO MOBILE RESPONSIVEf */
+.close-icon {
+    position: absolute;
+    right: -.5rem;
+    top: .3rem;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
+
+.close-icon img {
+    width: 1.3rem;
+}
+
+@media only screen and (max-width: 768px) {}
 </style>
