@@ -10,11 +10,14 @@
         </div>
 
         <!-- PARTICIPANTS -->
-        <div :id="'participant' + item" class="participant" v-for="item in totalParticipants">
-            <span @click="closeCard" class="close-icon" v-if="item > 3"><img src="../assets/close.png"
-                    alt="Cerrar tarjeta"></span>
-            <Participant @addParticipant="addNewParticipant" :participants="participantsMultiSelect"
-                :backgroundColor="this.backgroundsColors[item - 1]" :participantID="item" />
+        <div :id="'participant' + (item.participantID)" class="participant" v-for="(item, index) in draw.participants"
+            :key="item.participantID">
+            <span @click="closeCard" class="close-icon" v-if="index > 2">
+                <img src="../assets/close.png" alt="Cerrar tarjeta">
+            </span>
+            <Participant @updateParticipant="updateParticipant" :participants="participantsMultiSelect"
+                :backgroundColor="this.backgroundsColors[index]" :participantID="item.participantID"
+                :indexItem="index + 1" />
         </div>
 
         <!-- BUTTONS -->
@@ -39,6 +42,7 @@
 <script>
 import BaseInput from './form/BaseInput.vue'
 import Participant from './Participant.vue'
+import UniqueID from '../features/UniqueID'
 
 export default {
     components: { BaseInput, Participant },
@@ -49,7 +53,11 @@ export default {
                 name: '',
                 price: '',
                 date: '',
-                participants: [],
+                participants: [
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" }
+                ],
             },
             totalParticipants: 3,
             backgroundsColors: [],
@@ -67,6 +75,7 @@ export default {
             alert("Estamos trabajando en la página web.")
             console.log(event)
         },
+
         randomGradient() {
             const newColor1 = this.populate('#');
             const newColor2 = this.populate('#');
@@ -74,6 +83,7 @@ export default {
             const gradient = "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
             this.backgroundsColors.push(gradient);
         },
+
         populate(a) {
             const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
             for (var i = 0; i < 6; i++) {
@@ -83,36 +93,76 @@ export default {
             }
             return a;
         },
-        addNewParticipant(participant) {
+
+        // UPDATE NEW PARTICIPANT
+        updateParticipant(participant) {
+            // Inputs name and email must not be empty
             if (participant.name.trim() == '' || participant.email.trim() == '') return false;
-            this.addOrUpdate(this.draw.participants, participant)
-        },
-        addOrUpdate(array, element) {
-            const i = array.findIndex(_element => _element.participantID === element.participantID);
+
+            // Find participant index
+            const i = this.draw.participants.findIndex(_element => _element.participantID === participant.participantID);
             if (i > -1) {
-                array[i].element
-            } else {
-                array.push(element)
-                let p = { value: element.name, label: element.name, id: element.participantID }
-                this.participantsMultiSelect.push(p)
+                // Update Participant
+                this.draw.participants[i] = participant
+
+                // Exclude Participant List Management
+                this.addNewExcludeParticipant(participant)
             }
         },
+
+        addNewExcludeParticipant(participant) {
+            if (this.participantsMultiSelect.length === 0) {
+                let p = { value: participant.name, label: participant.name, id: participant.participantID }
+                this.participantsMultiSelect.push(p)
+            } else {
+                const i = this.participantsMultiSelect.findIndex(_element => _element.id === participant.participantID)
+                if (i === -1) {
+                    let p = { value: participant.name, label: participant.name, id: participant.participantID }
+                    this.participantsMultiSelect.push(p)
+                }
+            }
+        },
+
+        // ADD NEW PARTICIPANT CARD AND SCROLL TO IT
         async addParticipantCard() {
-            await this.totalParticipants++;
-            const lastCard = document.getElementsByClassName("participant")[document.getElementsByClassName("participant").length - 1]
-            const distanceFromTop = window.scrollY + lastCard.getBoundingClientRect().top
+            await this.draw.participants.push({ "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" })
+
+            const lastParticipantCard = document.getElementsByClassName("participant")[document.getElementsByClassName("participant").length - 1]
+            this.scrollToElement(lastParticipantCard)
+        },
+
+        scrollToElement(element) {
+            const distanceFromTop = window.scrollY + element.getBoundingClientRect().top
             window.scrollTo({
                 top: distanceFromTop,
                 behavior: 'smooth'
             })
         },
+
         async closeCard(event) {
             const selectedCard = event.target.parentNode.parentNode;
-            console.log(selectedCard);
             const form = document.getElementById("draw-form");
             await form.removeChild(document.getElementById(selectedCard.id))
-            console.log(document.getElementsByClassName("participant").length)
-        }
+
+            // DELETE PARTICIPANT FROM COMPONENT 
+            this.deleteParticipant(selectedCard.id.split("participant")[1])
+            this.deleteExcludeParticipant(selectedCard.id.split("participant")[1])
+        },
+
+        deleteParticipant(id) {
+            const index = this.draw.participants.findIndex(_element => _element.participantID == id)
+            if (index > -1) {
+                this.draw.participants.splice(index, 1)
+            }
+
+        },
+
+        deleteExcludeParticipant(id) {
+            const index = this.participantsMultiSelect.findIndex(_element => _element.id == id)
+            if (index > -1) {
+                this.participantsMultiSelect.splice(index, 1)
+            }
+        },
     },
 }
 </script>

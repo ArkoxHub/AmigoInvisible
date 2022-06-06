@@ -1,21 +1,21 @@
 <template>
     <fieldset :style="{ 'background': backgroundColor }">
-        <legend v-if="participant.name == ''">Participante {{ participantID }}</legend>
-        <legend v-else>Participante {{ participantID }}: {{ participant.name }}</legend>
+        <legend v-if="participant.name == ''">Participante {{ indexItem }}</legend>
+        <legend v-else>Participante {{ indexItem }}: {{ participant.name }}</legend>
         <div class="draw-participants">
             <!-- NAME -->
-            <BaseInput @blur="$emit('addParticipant', participant)" label="Nombre*" type="text"
+            <BaseInput @blur="$emit('updateParticipant', participant)" label="Nombre*" type="text"
                 v-model="participant.name" minLength="3" maxLength="25" placeholder="Nombre" />
 
             <!-- PARTICIPANT -->
-            <BaseInput @blur="$emit('addParticipant', participant)" label="Email*" type="email"
+            <BaseInput @blur="$emit('updateParticipant', participant)" label="Email*" type="email"
                 v-model="participant.email" maxLength="50" placeholder="Email" />
 
             <!-- EXCLUDE | MULTISELECT -->
             <div class="exclude-container">
                 <label for="exclude">Excluir</label>
                 <Multiselect class="input-field" v-model="participant.exclude" :options="options" mode="multiple"
-                    :close-on-select="false" @blur="$emit('addParticipant', participant)" placeholder="Excluir a..."
+                    :close-on-select="false" @blur="$emit('updateParticipant', participant)" placeholder="Excluir a..."
                     noOptionsText="No hay participantes" noResultsText="No hay más participantes" :create-option="true">
 
                     <template v-slot:multiplelabel="{ values }">
@@ -48,6 +48,10 @@ export default {
             required: true
         },
         participantID: {
+            type: Number,
+            required: true
+        },
+        indexItem: {
             type: Number,
             required: true
         }
