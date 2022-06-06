@@ -7,7 +7,7 @@ import Draw from '../components/Draw.vue'
 
 <template>
     <section class="home-info">
-        <h1 class="main-title">Sorteo amigo invisible</h1>
+        <h1 class="main-title">Sorteo amigo invisible online</h1>
         <p style="color: red; margin-bottom: 20px;">PÁGINA WEB EN DESARROLLO</p>
         <p class="home-description">En pocos pasos, podrás realizar el sorteo del amigo invisible gratis y recibir toda
             la información en el

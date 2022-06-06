@@ -2,7 +2,7 @@
     <form action="#" id="draw-form">
         <!-- HEADER -->
         <div class="draw-header">
-            <BaseInput label="Nombre del sorteo*" type="text" placeholder="Título del sorteo" v-model="draw.name"
+            <BaseInput label="Título del sorteo*" type="text" placeholder="Nombre del sorteo" v-model="draw.name"
                 className="input-header" />
             <BaseInput label="Precio" type="text" placeholder="Precio orientativo" v-model="draw.price"
                 className="input-header" />
@@ -16,15 +16,15 @@
                 <img src="../assets/close.png" alt="Cerrar tarjeta">
             </span>
             <Participant @updateParticipant="updateParticipant" :participants="participantsMultiSelect"
-                :backgroundColor="this.backgroundsColors[index]" :participantID="item.participantID"
-                :indexItem="index + 1" />
+                :backgroundColor="this.backgroundsColors[index]" :parentParticipant="item" :indexItem="index + 1" />
         </div>
 
         <!-- BUTTONS -->
         <div class="draw-actions">
             <button class="primary-button-link"
                 @click.prevent="addParticipantCard(); randomGradient();"><span>Agregar</span></button>
-            <button class="primary-button-link" @click.prevent="validateForm"><span>Continuar</span></button>
+            <button class="primary-button-link" @click.prevent="submitForm"
+                type="submit"><span>Continuar</span></button>
         </div>
 
         <!-- TEST -->
@@ -54,14 +54,15 @@ export default {
                 price: '',
                 date: '',
                 participants: [
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" }
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] }
                 ],
             },
             totalParticipants: 3,
             backgroundsColors: [],
             participantsMultiSelect: [],
+            validationErrors: true
         }
     },
     beforeMount() {
@@ -70,34 +71,38 @@ export default {
         }
     },
     methods: {
-        validateForm(event) {
+        submitForm(event) {
             // TODO Form validation before next step - review code
-            alert("Estamos trabajando en la página web.")
-            console.log(event)
+            const participants = this.draw.participants.filter(participant => participant.email !== '' && participant.name !== '')
+            this.draw.participants.forEach(element => {
+                this.validateParticipant(element);
+            });
         },
 
-        randomGradient() {
-            const newColor1 = this.populate('#');
-            const newColor2 = this.populate('#');
-            const angle = Math.round(Math.random() * 360);
-            const gradient = "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
-            this.backgroundsColors.push(gradient);
-        },
+        validateParticipant(participant) {
+            let errors = 0;
+            participant.errors = [];
 
-        populate(a) {
-            const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
-            for (var i = 0; i < 6; i++) {
-                var x = Math.round(Math.random() * 14);
-                var y = hexValues[x];
-                a += y;
+            if (participant.name === '') participant.errors.push({ message: 'Campo nombre requerido', type: "name" }); errors++
+            if (participant.email === '') {
+                participant.errors.push({ message: 'Campo email requerido', type: "email" })
+                errors++
+            } else if (!this.validateEmail(participant.email)) {
+                participant.errors.push({ message: 'Campo email incorrecto', type: "email" }); errors++
             }
-            return a;
+
+            return errors === 0 ? true : false;
+        },
+
+        // Function email validation 
+        validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
         },
 
         // UPDATE NEW PARTICIPANT
         updateParticipant(participant) {
-            // Inputs name and email must not be empty
-            if (participant.name.trim() == '' || participant.email.trim() == '') return false;
+            participant.errors = [];
 
             // Find participant index
             const i = this.draw.participants.findIndex(_element => _element.participantID === participant.participantID);
@@ -106,7 +111,8 @@ export default {
                 this.draw.participants[i] = participant
 
                 // Exclude Participant List Management
-                this.addNewExcludeParticipant(participant)
+                if (participant.name !== '' && participant.email !== '')
+                    this.addNewExcludeParticipant(participant)
             }
         },
 
@@ -129,6 +135,24 @@ export default {
 
             const lastParticipantCard = document.getElementsByClassName("participant")[document.getElementsByClassName("participant").length - 1]
             this.scrollToElement(lastParticipantCard)
+        },
+
+        randomGradient() {
+            const newColor1 = this.populate('#');
+            const newColor2 = this.populate('#');
+            const angle = Math.round(Math.random() * 360);
+            const gradient = "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
+            this.backgroundsColors.push(gradient);
+        },
+
+        populate(a) {
+            const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
+            for (var i = 0; i < 6; i++) {
+                var x = Math.round(Math.random() * 14);
+                var y = hexValues[x];
+                a += y;
+            }
+            return a;
         },
 
         scrollToElement(element) {
@@ -154,7 +178,6 @@ export default {
             if (index > -1) {
                 this.draw.participants.splice(index, 1)
             }
-
         },
 
         deleteExcludeParticipant(id) {

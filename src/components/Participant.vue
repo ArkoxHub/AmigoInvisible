@@ -2,10 +2,10 @@
     <fieldset :style="{ 'background': backgroundColor }">
         <legend v-if="participant.name == ''">Participante {{ indexItem }}</legend>
         <legend v-else>Participante {{ indexItem }}: {{ participant.name }}</legend>
-        <div class="draw-participants">
+        <div class="participants-fields">
             <!-- NAME -->
             <BaseInput @blur="$emit('updateParticipant', participant)" label="Nombre*" type="text"
-                v-model="participant.name" minLength="3" maxLength="25" placeholder="Nombre" />
+                v-model="participant.name" minLength="3" maxLength="15" placeholder="Nombre" />
 
             <!-- PARTICIPANT -->
             <BaseInput @blur="$emit('updateParticipant', participant)" label="Email*" type="email"
@@ -15,19 +15,29 @@
             <div class="exclude-container">
                 <label for="exclude">Excluir</label>
                 <Multiselect class="input-field" v-model="participant.exclude" :options="options" mode="multiple"
-                    :close-on-select="false" @blur="$emit('updateParticipant', participant)" placeholder="Excluir a..."
-                    noOptionsText="No hay participantes" noResultsText="No hay más participantes" :create-option="true">
+                    :close-on-select="false" @change="$emit('updateParticipant', participant)"
+                    placeholder="Excluir a..." noOptionsText="No hay participantes"
+                    noResultsText="No hay más participantes" :create-option="true">
 
                     <template v-slot:multiplelabel="{ values }">
                         <div v-if="values.length == 1" class="multiselect-multiple-label">
-                            {{ values.length }} participante
+                            {{ values.length }} participante excluido
                         </div>
                         <div v-else class="multiselect-multiple-label">
-                            {{ values.length }} participantes
+                            {{ values.length }} participantes excluidos
                         </div>
                     </template>
                 </Multiselect>
             </div>
+        </div>
+
+        <div v-if="parentParticipant.errors != ''" class="errors-container">
+            <template v-for="(item, index) in parentParticipant.errors" :key="index">
+                <span class="participant-error">
+                    <img class="exclamation-img" src="../assets/exclamation-mark.png" alt="Validación incorrecta">
+                    {{ item.message }}
+                </span>
+            </template>
         </div>
     </fieldset>
 </template>
@@ -43,12 +53,12 @@ export default {
             type: [Array, Object],
             required: false
         },
-        backgroundColor: {
-            type: String,
+        parentParticipant: {
+            type: Object,
             required: true
         },
-        participantID: {
-            type: Number,
+        backgroundColor: {
+            type: String,
             required: true
         },
         indexItem: {
@@ -59,19 +69,21 @@ export default {
     data() {
         return {
             participant: {
-                participantID: this.participantID,
+                participantID: this.parentParticipant.participantID,
                 name: '',
                 email: '',
                 exclude: [],
-                wishlist: '',
+                wishlist: [],
+                errors: [],
             },
         }
     },
+
     computed: {
         options() {
-            return this.participants.filter(item => item.id != this.participantID)
+            return this.participants.filter(item => item.id != this.parentParticipant.participantID)
         }
-    }
+    },
 }
 </script>
 
@@ -95,7 +107,7 @@ legend {
     color: var(--font-text)
 }
 
-.draw-participants {
+.participants-fields {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -110,5 +122,38 @@ legend {
     font-size: .8rem;
     min-height: auto;
     z-index: 2;
+}
+
+.errors-container {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.participant-error {
+    width: 92.7%;
+    padding: .6rem;
+    color: var(--font-text);
+    background-color: var(--error-color);
+    border: 1px solid var(--main-bg-color);
+    border-radius: var(--border-radius);
+    margin-bottom: .6rem;
+}
+
+.exclamation-img {
+    width: 1rem;
+    margin-right: .2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .errors-container {
+        padding: 1.2rem;
+    }
+
+    .participant-error {
+        width: 100%;
+    }
 }
 </style>
