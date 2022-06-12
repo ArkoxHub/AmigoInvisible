@@ -6,6 +6,7 @@ export default {
 
 <script setup>
 import UniqueID from '../../features/UniqueID'
+
 const uuid = UniqueID().getID()
 
 const props = defineProps({
@@ -15,7 +16,7 @@ const props = defineProps({
     className: String,
     maxLength: { type: String, required: false },
     minLenght: { type: String, required: false },
-    showError: { type: Boolean, default: false }
+    showError: { type: Boolean, default: false },
 })
 
 const errorMessage = "Campo requerido"
@@ -29,9 +30,23 @@ function updateValue(value) {
 
 <template>
     <div class="form-control">
-        <label :for="uuid" v-if="props.label">{{ props.label }}</label>
-        <input :id="uuid" v-bind="$attrs" :placeholder="placeholder" :class="className" class="input-field"
-            :value="modelValue" @input="updateValue($event.target.value)" :minlength="minLenght" :maxlength="maxLength">
+        <label 
+            :for="uuid" 
+            v-if="props.label"
+        >
+            {{ props.label }}
+        </label>
+        <input 
+            :id="uuid" 
+            v-bind="$attrs" 
+            :placeholder="placeholder" 
+            :class="className" 
+            class="input-field"
+            :value="modelValue" 
+            @input="updateValue($event.target.value)" 
+            :minlength="minLenght" 
+            :maxlength="maxLength"
+        >
         <p v-if="showError">{{ errorMessage }}</p>
     </div>
 </template>

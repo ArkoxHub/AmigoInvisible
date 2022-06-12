@@ -4,20 +4,42 @@
         <legend v-else>Participante {{ indexItem }}: {{ participant.name }}</legend>
         <div class="participants-fields">
             <!-- NAME -->
-            <BaseInput @blur="$emit('updateParticipant', participant)" label="Nombre*" type="text"
-                v-model="participant.name" minLength="3" maxLength="15" placeholder="Nombre" />
+            <BaseInput 
+                @blur="$emit('updateParticipant', participant)" 
+                label="Nombre*" 
+                type="text"
+                v-model="participant.name" 
+                minLength="3" maxLength="15" 
+                placeholder="Nombre"
+                :editMode="editMode"
+            />
 
             <!-- PARTICIPANT -->
-            <BaseInput @blur="$emit('updateParticipant', participant)" label="Email*" type="email"
-                v-model="participant.email" maxLength="50" placeholder="Email" />
+            <BaseInput 
+            @blur="$emit('updateParticipant', participant)" 
+                label="Email*" 
+                type="email"
+                v-model="participant.email" 
+                maxLength="50" 
+                placeholder="Email" 
+                :editMode="editMode"
+            />
 
             <!-- EXCLUDE | MULTISELECT -->
             <div class="exclude-container">
                 <label for="exclude">Excluir</label>
-                <Multiselect class="input-field" v-model="participant.exclude" :options="options" mode="multiple"
-                    :close-on-select="false" @change="$emit('updateParticipant', participant)"
-                    placeholder="Excluir a..." noOptionsText="No hay participantes"
-                    noResultsText="No hay más participantes" :create-option="true">
+
+                <Multiselect 
+                    class="input-field" 
+                    v-model="participant.exclude" 
+                    :options="options" 
+                    mode="multiple"
+                    :close-on-select="false" 
+                    @change="$emit('updateParticipant', participant)"
+                    placeholder="Excluir a..." 
+                    noOptionsText="No hay participantes"
+                    noResultsText="No hay más participantes" 
+                    :create-option="true">
 
                     <template v-slot:multiplelabel="{ values }">
                         <div v-if="values.length == 1" class="multiselect-multiple-label">
@@ -64,6 +86,10 @@ export default {
         indexItem: {
             type: Number,
             required: true
+        },
+        editMode: {
+            type: Boolean,
+            required: false
         }
     },
     data() {
@@ -121,7 +147,6 @@ legend {
     margin-top: .17rem;
     font-size: .8rem;
     min-height: auto;
-    z-index: 2;
 }
 
 .errors-container {

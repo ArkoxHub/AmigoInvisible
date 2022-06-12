@@ -1,30 +1,72 @@
 <template>
-    <form action="#" id="draw-form">
+    <form 
+        action="#" 
+        id="draw-form" 
+        v-if="showSummary === false"
+    >
         <!-- HEADER -->
         <div class="draw-header">
-            <BaseInput label="Título del sorteo*" type="text" placeholder="Nombre del sorteo" v-model="draw.name"
-                className="input-header" />
-            <BaseInput label="Precio" type="text" placeholder="Precio orientativo" v-model="draw.price"
-                className="input-header" />
-            <BaseInput label="Fecha del sorteo" type="date" v-model="draw.date" className="input-header" />
+            <BaseInput 
+                label="Título del sorteo*" 
+                type="text" 
+                placeholder="Nombre del sorteo" 
+                v-model="draw.name"
+                className="input-header" 
+            />
+
+            <BaseInput 
+                label="Precio" 
+                type="text" 
+                placeholder="Precio orientativo" 
+                v-model="draw.price"
+                className="input-header" 
+            />
+
+            <BaseInput 
+                label="Fecha del sorteo" 
+                type="date" 
+                v-model="draw.date" 
+                className="input-header" 
+            />
         </div>
 
         <!-- PARTICIPANTS -->
-        <div :id="'participant' + (item.participantID)" class="participant" v-for="(item, index) in draw.participants"
-            :key="item.participantID">
-            <span @click="closeCard" class="close-icon" v-if="index > 2">
+        <div 
+            :id="'participant' + (item.participantID)" 
+            class="participant" 
+            v-for="(item, index) in draw.participants" :key="item.participantID"
+        >
+            <span 
+                @click="closeCard" 
+                class="close-icon" 
+                v-if="index > 2"
+            >
                 <img src="../assets/close.png" alt="Cerrar tarjeta">
             </span>
-            <Participant @updateParticipant="updateParticipant" :participants="participantsMultiSelect"
-                :backgroundColor="this.backgroundsColors[index]" :parentParticipant="item" :indexItem="index + 1" />
+            <Participant 
+                @updateParticipant="updateParticipant" 
+                :participants="participantsMultiSelect"
+                :backgroundColor="this.backgroundsColors[index]" 
+                :parentParticipant="item" 
+                :indexItem="index + 1"
+            />
         </div>
 
         <!-- BUTTONS -->
         <div class="draw-actions">
-            <button class="primary-button-link"
-                @click.prevent="addParticipantCard(); randomGradient();"><span>Agregar</span></button>
-            <button class="primary-button-link" @click.prevent="submitForm"
-                type="submit"><span>Continuar</span></button>
+            <button 
+                class="primary-button-link"
+                @click.prevent="addParticipantCard(); randomGradient();"
+            >
+                <span>Agregar</span>
+            </button>
+            <button 
+                class="primary-button-link" 
+                @click.prevent="submitForm" 
+                type="text"
+            >
+                <span>Continuar</span>
+            </button>
         </div>
 
         <!-- TEST -->
@@ -37,15 +79,23 @@
             </li>
         </div>
     </form>
+
+    <!-- Summary Component -->
+    <Summary 
+        v-if="showSummary === true" 
+        :draw="this.draw" 
+        @changeSummaryStatus="this.showSummary = false"
+    />
 </template>
 
 <script>
 import BaseInput from './form/BaseInput.vue'
 import Participant from './Participant.vue'
+import Summary from './Summary.vue'
 import UniqueID from '../features/UniqueID'
 
 export default {
-    components: { BaseInput, Participant },
+    components: { BaseInput, Participant, Summary },
 
     data() {
         return {
@@ -54,15 +104,18 @@ export default {
                 price: '',
                 date: '',
                 participants: [
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], "errors": [] }
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
+                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] }
                 ],
             },
             totalParticipants: 3,
             backgroundsColors: [],
             participantsMultiSelect: [],
-            validationErrors: true
+            validationErrors: true,
+            maxTries: 10000,
+            showSummary: false,
+            editMode: false
         }
     },
     beforeMount() {
@@ -71,20 +124,120 @@ export default {
         }
     },
     methods: {
-        submitForm(event) {
-            // TODO Form validation before next step - review code
-            const participants = this.draw.participants.filter(participant => participant.email !== '' && participant.name !== '')
+        submitForm() {
+            let isValidated = false
+
+            // Validate form participants
             this.draw.participants.forEach(element => {
-                this.validateParticipant(element);
+                isValidated = this.validateParticipant(element);
             });
+
+            // Clear empty participants in case user has added 
+            let participants = this.draw.participants.filter(participant => participant.email !== '' && participant.name !== '')
+
+
+            if (participants.length < 3) {
+                alert('Debes agregar al menos 3 participantes')
+                return false;
+            }
+
+            // Exit in case participants validation fails
+            if (!isValidated) return false;
+
+            // Participants with more participants.exclude length should be at first positions
+            participants = participants.sort((a, b) => {
+                return b.exclude.length - a.exclude.length;
+            })
+
+            // Logic to randomize participants
+            let assignedParticipants = [];
+            let drawStatus = 'success';
+            participants.every(participant => {
+                let count = 0;
+                let randomNumber = this.getRandomNumber(participants.length);
+
+                //  Check if random number is already assigned
+                while (assignedParticipants.includes(randomNumber) && count < 500) {
+                    randomNumber = this.getRandomNumber(participants.length);
+                    count++;
+                }
+
+                // Check if participant exclude all other participants
+                if (participant.exclude.length == participants.length - 1
+                    && count < this.maxTries) {
+                    alert(`El participante ${participant.name} no tiene a quién regalarle debido a sus exclusiones.`)
+                    count++;
+                    drawStatus = 'exclude';
+                    return false;
+                }
+
+                // Check if participant can't be assigned to any other participant because of unlucky draw 
+                if (!assignedParticipants.includes(randomNumber) && participant.participantID === participants[randomNumber].participantID
+                    && assignedParticipants.length === participants.length - 1
+                    && count < this.maxTries) {
+                    count++;
+                    drawStatus = 'repeat';
+                    return false;
+                }
+
+                //  Check if random number is in the exclude list
+                while (participant.participantID === participants[randomNumber].participantID
+                    || participant.exclude.includes(participants[randomNumber].participantID)
+                    || assignedParticipants.includes(randomNumber)
+                    && count < this.maxTries) {
+                    randomNumber = this.getRandomNumber(participants.length);
+                    count++;
+                }
+
+                if (count >= this.maxTries) {
+                    drawStatus = 'error';
+                    return false;
+                }
+
+                assignedParticipants.push(randomNumber);
+                participant.result = participants[randomNumber].name;
+                return true;
+            }); // End of participants.every
+
+            if (drawStatus === 'error') {
+                alert('No se ha podido generar el sorteo, asegúrate de que las exclusiones de cada participante sean correctas.')
+                return false;
+            }
+
+            if (drawStatus === 'exclude') {
+                return false;
+            }
+
+            if (drawStatus === 'repeat') {
+                console.log("Repeat");
+                this.submitForm();
+            }
+
+            if (drawStatus === 'success') {
+                this.draw.participants = [];
+                this.draw.participants = participants;
+                console.log("==================");
+                this.draw.participants.forEach(participant => {
+                    console.log(participant.name + ': ' + participant.result);
+                })
+                console.log("==================");
+                this.showSummary = true;
+            }
+
         },
 
         validateParticipant(participant) {
             let errors = 0;
             participant.errors = [];
 
-            if (participant.name === '') participant.errors.push({ message: 'Campo nombre requerido', type: "name" }); errors++
-            if (participant.email === '') {
+            // Validate name
+            if (participant.name.trim() === '') {
+                participant.errors.push({ message: 'Campo nombre requerido', type: "name" })
+                errors++
+            }
+
+            // Validate email
+            if (participant.email.trim() === '') {
                 participant.errors.push({ message: 'Campo email requerido', type: "email" })
                 errors++
             } else if (!this.validateEmail(participant.email)) {
@@ -110,7 +263,7 @@ export default {
                 // Update Participant
                 this.draw.participants[i] = participant
 
-                // Exclude Participant List Management
+                // Add exclude Participant List Management
                 if (participant.name !== '' && participant.email !== '')
                     this.addNewExcludeParticipant(participant)
             }
@@ -118,14 +271,15 @@ export default {
 
         addNewExcludeParticipant(participant) {
             if (this.participantsMultiSelect.length === 0) {
-                let p = { value: participant.name, label: participant.name, id: participant.participantID }
+                let p = { value: participant.participantID, label: participant.name, id: participant.participantID }
                 this.participantsMultiSelect.push(p)
             } else {
                 const i = this.participantsMultiSelect.findIndex(_element => _element.id === participant.participantID)
                 if (i === -1) {
-                    let p = { value: participant.name, label: participant.name, id: participant.participantID }
+                    let p = { value: participant.participantID, label: participant.name, id: participant.participantID }
                     this.participantsMultiSelect.push(p)
                 }
+                // TODO - Add logic to update exclude list when participant change name or it's deleted from draw
             }
         },
 
@@ -186,6 +340,14 @@ export default {
                 this.participantsMultiSelect.splice(index, 1)
             }
         },
+
+        getRandomNumber(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        },
+
+        changeStatus(value) {
+            console.log("Hola");
+        }
     },
 }
 </script>
