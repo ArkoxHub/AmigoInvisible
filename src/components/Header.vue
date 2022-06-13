@@ -168,15 +168,6 @@ export default {
     width: 40px;
 }
 
-.span-color,
-.span-color-link {
-    color: var(--primary-color);
-}
-
-.span-color-link:hover {
-    color: #333;
-}
-
 /* HAMBURGUER */
 
 .hamburger {

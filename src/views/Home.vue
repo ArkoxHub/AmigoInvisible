@@ -3,15 +3,14 @@ import uno from '../assets/uno.png'
 import dos from '../assets/dos.png'
 import tres from '../assets/tres.png'
 import Draw from '../components/Draw.vue'
+
 </script>
 
 <template>
-    <section class="home-info">
+    <section v-if="this.showInfo === true" class="home-info">
         <h1 class="main-title">Sorteo amigo invisible online</h1>
-        <p style="color: red; margin-bottom: 20px;">PÁGINA WEB EN DESARROLLO</p>
-        <p class="home-description">En pocos pasos, podrás realizar el sorteo del amigo invisible gratis y recibir toda
-            la información en el
-            correo electrónico de cada participante.</p>
+        <p class="home-description">A continuación podrás realizar el sorteo del amigo invisible gratis online y recibir toda
+            la información en el correo electrónico de cada participante.</p>
         <ul class="home-steps-todo">
             <span>Pasos a seguir</span>
             <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena la siguiente información.</li>
@@ -30,9 +29,24 @@ import Draw from '../components/Draw.vue'
 
     <section class="draw-container">
         <!-- DRAW -->
-        <Draw />
+        <Draw @toggleInfo="toggleInfo" />
     </section>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            showInfo: true,
+        }
+    },
+    methods: {
+        toggleInfo() {
+            this.showInfo = !this.showInfo
+        }
+    }
+}
+</script>
 
 <style scoped>
 .home-info {

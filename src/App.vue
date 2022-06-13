@@ -4,13 +4,15 @@
     <router-view></router-view>
   </div>
   <!-- Footer needed -->
+  <Footer/>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 
 export default {
-  components: { Header },
+  components: { Header, Footer },
   data() {
     return {
       isHamburgerActive: ''
@@ -31,12 +33,12 @@ export default {
 .container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   margin: auto;
   width: 85ch;
   margin-top: 7rem;
   z-index: 1;
   position: relative;
+  min-height: 62vh;
 }
 
 @media only screen and (max-width: 768px) {

@@ -12,6 +12,7 @@
                 minLength="3" maxLength="15" 
                 placeholder="Nombre"
                 :editMode="editMode"
+                :participant="parentParticipant"
             />
 
             <!-- PARTICIPANT -->
@@ -23,6 +24,8 @@
                 maxLength="50" 
                 placeholder="Email" 
                 :editMode="editMode"
+                :participant="parentParticipant"
+
             />
 
             <!-- EXCLUDE | MULTISELECT -->

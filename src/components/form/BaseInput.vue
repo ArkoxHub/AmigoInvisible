@@ -1,9 +1,11 @@
+<!-- Script Attrs -->
 <script>
 export default {
     inheritAttrs: false
 }
 </script>
 
+<!-- Script Setup -->
 <script setup>
 import UniqueID from '../../features/UniqueID'
 
@@ -17,15 +19,16 @@ const props = defineProps({
     maxLength: { type: String, required: false },
     minLenght: { type: String, required: false },
     showError: { type: Boolean, default: false },
+    errorLabel: { type: String, required: false, default: '' },
 })
 
 const errorMessage = "Campo requerido"
 
 const emit = defineEmits(['update:modelValue'])
-
 function updateValue(value) {
     emit('update:modelValue', value)
 }
+
 </script>
 
 <template>
@@ -35,6 +38,10 @@ function updateValue(value) {
             v-if="props.label"
         >
             {{ props.label }}
+        </label>
+        <label class="error-label" v-if="errorLabel != ''">
+            <img class="exclamation-img" src="../../assets/exclamation-mark.png" alt="Validación incorrecta">
+            {{ errorLabel}}
         </label>
         <input 
             :id="uuid" 
@@ -55,5 +62,20 @@ function updateValue(value) {
 label {
     display: block;
     margin: 0px 0px 3px 4px;
+}
+
+.error-label {
+    background-color: var(--error-color);
+    color: var(--font-text);
+    padding: .6rem;
+    border-radius: var(--border-radius);
+    margin: auto;
+    margin-bottom: .2rem;
+    border: 1px solid var(--main-bg-color);
+}
+
+.exclamation-img {
+    width: 1rem;
+    margin-right: .2rem;
 }
 </style>

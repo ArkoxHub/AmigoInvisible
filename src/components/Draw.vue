@@ -2,7 +2,7 @@
     <form 
         action="#" 
         id="draw-form" 
-        v-if="showSummary === false"
+        v-show="showSummary === false"
     >
         <!-- HEADER -->
         <div class="draw-header">
@@ -12,6 +12,9 @@
                 placeholder="Nombre del sorteo" 
                 v-model="draw.name"
                 className="input-header" 
+                maxLength="50"
+                :errorLabel="titleError"
+                @blur="validateTitle"
             />
 
             <BaseInput 
@@ -19,7 +22,8 @@
                 type="text" 
                 placeholder="Precio orientativo" 
                 v-model="draw.price"
-                className="input-header" 
+                className="input-header"
+                maxLength="30"
             />
 
             <BaseInput 
@@ -68,23 +72,13 @@
                 <span>Continuar</span>
             </button>
         </div>
-
-        <!-- TEST -->
-        <div class="test-zone" style="margin-top: 50px; margin-bottom: 50px; list-style: none;">
-            <li v-for="(item, index) in draw" :key="index">
-                <span v-if="index !== 'participants'">{{ index }}: {{ item }}</span>
-            </li>
-            <li v-for="(item, index) in draw.participants" :key="index">
-                <span>{{ index }}: {{ item }}</span>
-            </li>
-        </div>
     </form>
 
     <!-- Summary Component -->
     <Summary 
-        v-if="showSummary === true" 
+        v-if="showSummary === true"
         :draw="this.draw" 
-        @changeSummaryStatus="this.showSummary = false"
+        @changeSummaryStatus="toggleSummary"
     />
 </template>
 
@@ -96,13 +90,14 @@ import UniqueID from '../features/UniqueID'
 
 export default {
     components: { BaseInput, Participant, Summary },
-
+    emits: ['toggleInfo'],
     data() {
         return {
             draw: {
                 name: '',
                 price: '',
                 date: '',
+                comments: '',
                 participants: [
                     { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
                     { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
@@ -115,7 +110,8 @@ export default {
             validationErrors: true,
             maxTries: 10000,
             showSummary: false,
-            editMode: false
+            editMode: false,
+            titleError: '',
         }
     },
     beforeMount() {
@@ -127,6 +123,15 @@ export default {
         submitForm() {
             let isValidated = false
 
+            // Validate form title   
+            if (this.draw.name.trim() === '') {
+                this.titleError = 'Campo obligatorio'
+                alert("El campo 'Título del sorteo' es obligatorio")
+                isValidated = false
+                this.scrollToElement(document.getElementsByClassName('home-remainder')[0])
+                return false;
+            }
+
             // Validate form participants
             this.draw.participants.forEach(element => {
                 isValidated = this.validateParticipant(element);
@@ -134,7 +139,6 @@ export default {
 
             // Clear empty participants in case user has added 
             let participants = this.draw.participants.filter(participant => participant.email !== '' && participant.name !== '')
-
 
             if (participants.length < 3) {
                 alert('Debes agregar al menos 3 participantes')
@@ -222,8 +226,9 @@ export default {
                 })
                 console.log("==================");
                 this.showSummary = true;
+                this.$emit('toggleInfo', false);
+                window.scrollTo(0, 0);
             }
-
         },
 
         validateParticipant(participant) {
@@ -251,6 +256,12 @@ export default {
         validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
+        },
+
+        validateTitle() {
+            if (this.titleError != '') {
+                this.draw.name.trim() === '' ? this.titleError = 'Campo obligatorio' : this.titleError = ''
+            }
         },
 
         // UPDATE NEW PARTICIPANT
@@ -345,14 +356,15 @@ export default {
             return Math.floor(Math.random() * Math.floor(max));
         },
 
-        changeStatus(value) {
-            console.log("Hola");
+        toggleSummary() {
+            this.showSummary=false;
+            this.$emit('toggleInfo', true);
         }
     },
 }
 </script>
 
-<style scoped>
+<style>
 .draw-header,
 .participant {
     display: flex;

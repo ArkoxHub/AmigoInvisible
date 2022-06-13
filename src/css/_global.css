@@ -30,6 +30,15 @@ html {
     font-size: 1.6rem;
 }
 
+.span-color,
+.span-color-link {
+    color: var(--primary-color);
+}
+
+.span-color-link:hover {
+    color: #333;
+}
+
 a {
     color: var(--font-text);
 }
