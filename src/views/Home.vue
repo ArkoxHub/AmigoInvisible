@@ -7,7 +7,7 @@ import Draw from '../components/Draw.vue'
 </script>
 
 <template>
-    <section v-if="this.showInfo === true" class="home-info">
+    <section v-if="showInfo == true" class="home-info">
         <h1 class="main-title">Sorteo amigo invisible online</h1>
         <p class="home-description">A continuación podrás realizar el sorteo del amigo invisible gratis online y recibir toda
             la información en el correo electrónico de cada participante.</p>
