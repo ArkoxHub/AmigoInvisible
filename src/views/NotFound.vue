@@ -11,7 +11,10 @@ export default {
             required: true,
             default: 'page'
         }
-    }
+    },
+    mounted() {
+        window.scrollTo(0, 0)
+    },
 }
 </script>
 <style scoped>

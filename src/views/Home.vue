@@ -44,7 +44,10 @@ export default {
         toggleInfo() {
             this.showInfo = !this.showInfo
         }
-    }
+    },
+    mounted() {
+        window.scrollTo(0, 0)
+    },
 }
 </script>
 

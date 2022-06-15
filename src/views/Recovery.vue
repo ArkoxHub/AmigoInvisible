@@ -1,7 +1,13 @@
 <script setup>
+import { onMounted } from 'vue';
+
 const props = defineProps({
     title: String,
     required: false
+})
+
+onMounted(() => {
+    window.scrollTo(0, 0);
 })
 </script>
 

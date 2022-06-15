@@ -20,6 +20,14 @@ const currentYear = computed(() => {
         <div class="legal-container">
             <router-link to="/">Cookies</router-link>
             <router-link to="/">Política de privacidad</router-link>
+            <form id="paypalDonation" action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="hosted_button_id" value="VH8WQZ9AMYK48" />
+                <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donate_SM.gif" border="0"
+                    name="submit" title="PayPal - The safer, easier way to pay online!" alt="Botón Donar con PayPal" />
+                <img alt="" border="0" src="https://www.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1" />
+            </form>
+
+
         </div>
     </section>
     <!-- <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Muhammad Waqas Khan - Flaticon</a> -->
@@ -39,7 +47,7 @@ const currentYear = computed(() => {
     box-shadow: 0px 0px 13px 1px #ffc73b;
 }
 
-.footer-container > div {
+.footer-container>div {
     padding: .3rem
 }
 
@@ -53,6 +61,13 @@ const currentYear = computed(() => {
 .copyright-container,
 .legal-container a {
     color: #ccc;
+}
+
+.legal-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .legal-container a:hover {
@@ -70,9 +85,15 @@ const currentYear = computed(() => {
     width: 30px;
 }
 
-.legal-container a {
+.legal-container a,
+#paypalDonation {
     margin-left: 1rem;
 }
+
+input[type="image"] {
+    width: 4.2rem;
+}
+
 
 @media only screen and (max-width: 1135px) {
     .footer-container {
@@ -82,9 +103,13 @@ const currentYear = computed(() => {
         text-align: center;
     }
 
-    .footer-container > div {
+    .footer-container>div {
         padding: .5rem;
     }
-}
 
+    #paypalDonation {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+}
 </style>

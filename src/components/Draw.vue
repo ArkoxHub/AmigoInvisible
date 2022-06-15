@@ -99,9 +99,9 @@ export default {
                 date: '',
                 comments: '',
                 participants: [
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] },
-                    { "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": [], result: '', "errors": [] }
+                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
+                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
+                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] }
                 ],
             },
             totalParticipants: 3,
@@ -296,7 +296,7 @@ export default {
 
         // ADD NEW PARTICIPANT CARD AND SCROLL TO IT
         async addParticipantCard() {
-            await this.draw.participants.push({ "participantID": UniqueID().getID(), "name": "", "email": "", "exclude": [], "wishlist": "" })
+            await this.draw.participants.push({ participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: "" })
 
             const lastParticipantCard = document.getElementsByClassName("participant")[document.getElementsByClassName("participant").length - 1]
             this.scrollToElement(lastParticipantCard)
@@ -323,7 +323,7 @@ export default {
         scrollToElement(element) {
             const distanceFromTop = window.scrollY + element.getBoundingClientRect().top
             window.scrollTo({
-                top: distanceFromTop,
+                top: distanceFromTop - 100,
                 behavior: 'smooth'
             })
         },

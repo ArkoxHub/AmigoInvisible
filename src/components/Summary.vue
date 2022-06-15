@@ -38,8 +38,23 @@ export default {
     },
     methods: {
         sendMailsRequest() {
-            console.log("lego");
+            // POST Fetch
+            fetch('http://localhost:5445/sendEmails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.draw)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => console.log(error));
         }
+    },
+    mounted() {
+        window.scrollTo(0, 0)
     }
 }
 </script>
