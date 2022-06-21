@@ -4,6 +4,9 @@ import NotFound from '../views/NotFound.vue'
 import Gifts from '../views/Gifts.vue'
 import Wishlist from '../views/Wishlist.vue'
 import Recovery from '../views/Recovery.vue'
+import DrawSuccess from '../views/DrawSuccess.vue'
+import DrawError from '../views/DrawError.vue'
+import Results from '../views/Results.vue'
 
 const routes = [
     {
@@ -31,6 +34,22 @@ const routes = [
         name: 'Recovery',
         component: Recovery
     },
+    {
+        path: '/sorteo-finalizado',
+        name: 'DrawSuccess',
+        component: DrawSuccess
+    },
+    {
+        path: '/resultado/:id',
+        name: 'Results',
+        component: Results
+    },
+    {
+        path: '/error',
+        name: 'DrawError',
+        component: DrawError
+    },
+
     {
         path: '/404/:resource',
         name: '404Resource',

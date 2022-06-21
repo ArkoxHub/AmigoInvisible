@@ -1,7 +1,7 @@
 <template>
-    <h1 class="main-title">Oops!</h1>
-    <h3>The {{ resource }} you're looking for is not here.</h3>
-    <router-link to="/">Back</router-link>
+    <h1 class="main-title">😢Oops!</h1>
+    <h3>La {{ resource }} página a la que intentas acceder no existe.</h3>
+    <router-link class="span-color" to="/">Volver</router-link>
 </template>
 <script>
 export default {
@@ -18,4 +18,7 @@ export default {
 }
 </script>
 <style scoped>
+a {
+    margin-top: 20px;
+}
 </style>

@@ -1,6 +1,8 @@
 <template>
     <fieldset :style="{ 'background': backgroundColor }">
-        <legend v-if="participant.name == ''">Participante {{ indexItem }}</legend>
+        <legend v-if="participant.name == '' && indexItem == 1" id="host">Participante {{ indexItem }} (anfitrión)</legend>
+        <legend v-else-if="participant.name != '' && indexItem == 1" id="host">Participante {{ indexItem }} (anfitrión): {{ participant.name }}</legend>
+        <legend v-else-if="participant.name == ''">Participante {{ indexItem }}</legend>
         <legend v-else>Participante {{ indexItem }}: {{ participant.name }}</legend>
         <div class="participants-fields">
             <!-- NAME -->

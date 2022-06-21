@@ -110,12 +110,6 @@ a {
     background: dodgerblue;
 }
 
-@media only screen and (max-width: 767px) {
-    .primary-button-link {
-        width: 150px;
-    }
-}
-
 /** FORM **/
 .input-field {
     border: none;
@@ -142,6 +136,55 @@ select.input-field {
 
 .input-header:focus {
     border: 3px solid var(--primary-color);
+}
+
+::placeholder {
+    color: #9CA3AF;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #9CA3AF;
+}
+
+/* SPINNER */
+#spinner:not([hidden]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+#spinner::after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 100%;
+    will-change: transform;
+    animation: spin 1s infinite linear
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -177,19 +220,8 @@ select.input-field {
     .input-header {
         margin-bottom: 10px !important;
     }
-}
 
-::placeholder {
-    color: #9CA3AF;
-    opacity: 1;
-}
-
-:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: red;
-}
-
-::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: #9CA3AF;
+    .primary-button-link {
+        width: 150px;
+    }
 }

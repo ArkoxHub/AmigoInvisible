@@ -98,6 +98,7 @@ export default {
                 price: '',
                 date: '',
                 comments: '',
+                host: '',
                 participants: [
                     { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
                     { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
@@ -213,18 +214,18 @@ export default {
             }
 
             if (drawStatus === 'repeat') {
-                console.log("Repeat");
                 this.submitForm();
             }
 
             if (drawStatus === 'success') {
                 this.draw.participants = [];
                 this.draw.participants = participants;
-                console.log("==================");
-                this.draw.participants.forEach(participant => {
-                    console.log(participant.name + ': ' + participant.result);
-                })
-                console.log("==================");
+                this.draw.host = document.querySelector(".participant .input-field").value;
+                // console.log("==================");
+                // this.draw.participants.forEach(participant => {
+                //     console.log(participant.name + ': ' + participant.result);
+                // })
+                // console.log("==================");
                 this.showSummary = true;
                 this.$emit('toggleInfo', false);
                 window.scrollTo(0, 0);
