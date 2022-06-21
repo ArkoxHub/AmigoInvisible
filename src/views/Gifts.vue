@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted
+import {
+    onMounted
 } from 'vue';
 const props = defineProps({
     title: String,

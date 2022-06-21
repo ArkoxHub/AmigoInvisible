@@ -5,7 +5,7 @@
         <br>
         <p>Visita la sección <router-link class="span-color" to="lista-de-deseos">lista de deseos</router-link> para
             configurar una lista de los regalos que te gustaría recibir. <br>Sólo los participantes de vuestro sorteo
-            podrán ver.</p>
+            lo pueden ver.</p>
         <br>
         <p>Muchas gracias por participar en amigoinvisible.net 😀</p>
         <!--    TODO: WhatsApp share -->
