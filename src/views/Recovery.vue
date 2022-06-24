@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>Recuperación</h1>
+    <h1 class="main-title">Recuperación</h1>
     <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
     <p>Sección destinada para la recuperación de sorteos anteriores, para que puedas volver a jugar en caso necesario.
     </p>
@@ -21,6 +21,6 @@ onMounted(() => {
 
 <style scoped>
 p {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 </style>

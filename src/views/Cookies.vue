@@ -19,6 +19,6 @@ onMounted(() => {
 
 <style scoped>
 p {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 </style>

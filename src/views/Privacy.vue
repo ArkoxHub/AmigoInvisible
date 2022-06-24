@@ -183,8 +183,8 @@ onMounted(() => {
             <li><span class="span-color">Estadísticas</span><br><b>Google Analytics.</b> Datos personales: Datos de uso: Rastreadores.</li>
             <li><span class="span-color">Gestión de Etiquetas</span><br><b>Google Tag Manager.</b> Datos personales: Datos de uso.</li>
             <li><span class="span-color">Optimización y distribución del tráfico</span><br><b>Cloudflare.</b> Datos personales: Distintas clases de Datos, según se especifíca en la Política de Privacidad del servicio.</li>
-            <li><span class="span-color"></span>PayPal</li>
-            <li><span class="span-color"></span>Amazon Advertising</li>
+            <li><span class="span-color">PayPal</span></li>
+            <li><span class="span-color">Amazon Advertising</span></li>
         </ul>
 
         <hr>

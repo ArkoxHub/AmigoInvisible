@@ -12,13 +12,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>Lista de deseos</h1>
+    <h1 class="main-title">Lista de deseos</h1>
     <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
     <p>Aquí podrás crear una lista de regalos y todos los participantes podrán saber que es lo que quieres!</p>
 </template>
 
 <style scoped>
 p {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 </style>

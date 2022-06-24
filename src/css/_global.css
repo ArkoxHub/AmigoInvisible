@@ -233,4 +233,8 @@ select.input-field {
     .primary-button-link {
         width: 150px;
     }
+
+    h1 {
+        font-size: 1.4rem !important;
+    }
 }

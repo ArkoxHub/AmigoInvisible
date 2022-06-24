@@ -1,11 +1,11 @@
 <template>
     <section class="success-container">
-        <h1 class="main-title span-color">¡Sorteo realizado con éxito!</h1>
-        <p>Todos los participantes del sorteo han recibido un correo electrónico con el resultado.</p>
+        <h1 class="main-title">¡Sorteo realizado con éxito!</h1>
+        <p>Todos los participantes del sorteo han recibido un correo electrónico con su resultado. En caso de no haber recibido el correo por favor, verifica la carpeta de spam.</p>
         <br>
         <p>Visita la sección <router-link class="span-color" to="lista-de-deseos">lista de deseos</router-link> para
             configurar una lista de los regalos que te gustaría recibir. <br>Sólo los participantes de vuestro sorteo
-            lo pueden ver.</p>
+            lo podrán ver.</p>
         <br>
         <p>Muchas gracias por participar en amigoinvisible.net 😀</p>
         <!--    TODO: WhatsApp share -->
@@ -73,11 +73,5 @@ export default {
 <style scoped>
 .draw-actions {
     margin-top: 50px;
-}
-
-@media only screen and (max-width: 768px) {
-    h1 {
-        font-size: 1.4rem;
-    }
 }
 </style>

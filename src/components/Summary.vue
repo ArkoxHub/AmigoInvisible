@@ -9,12 +9,13 @@ import UniqueID from '../features/UniqueID'
 
         <!-- Card Summary -->
         <div class="card-summary">
-            <h3><strong class="span-text">Nombre del sorteo: </strong> {{ draw.name }}</h3>
-            <h3 v-if="draw.price != ''"><strong class="span-text">Precio orientativo: </strong> {{ draw.price }}</h3>
-            <h3 v-if="draw.date != ''"><strong class="span-text">Fecha: </strong> {{ draw.date }}</h3>
+            <h2 class="subTitle">Sorteo</h2>
+            <p><strong class="span-text">Título: </strong> {{ draw.name }}</p>
+            <p v-if="draw.price != ''"><strong class="span-text">Precio orientativo: </strong> {{ draw.price }}</p>
+            <p v-if="draw.date != ''"><strong class="span-text">Fecha: </strong> {{ draw.date }}</p>
 
             <!-- Participants -->
-            <h2 class="subTitle">Lista de participantes</h2>
+            <h2 class="subTitle">Participantes</h2>
             <ul class="participant-list" v-for="(participant, index) in draw.participants">
                 <li><strong class="span-text">Participante {{ index + 1 }}: </strong> {{ participant.name }}</li>
                 <li><strong class="span-text">Email: </strong>: {{ participant.email }}</li>
@@ -25,7 +26,7 @@ import UniqueID from '../features/UniqueID'
         <!-- Comments -->
         <div class="comments-container">
             <h2 class="subTitle">Añadir comentario</h2>
-            <textarea placeholder="La entrega de los regalos será en casa de Voldemort 🧙‍♂️" class="text-area-field" maxlength="1000" v-model="draw.comments"></textarea>
+            <textarea placeholder="Ejemplo: La entrega de los regalos será en casa de Voldemort 🧙‍♂️" class="text-area-field" maxlength="1000" v-model="draw.comments"></textarea>
         </div>
 
         <!-- BUTTONS -->
@@ -51,15 +52,14 @@ export default {
     },
     methods: {
         sendMailsRequest() {
-            const local = 'http://localhost:5445/sendEmails'
-            const pro = "https://amigoinvisible-api.onrender.com/sendEmails"
+            const URL =  import.meta.env.VITE_API_URL + '/sendEmails'
 
             const spinner = document.getElementById('spinner');
             spinner.removeAttribute("hidden")
             document.getElementsByClassName("container")[0].classList.add("backScene")
 
             // POST Fetch
-            fetch(pro, {
+            fetch(URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -86,6 +86,10 @@ export default {
 }
 </script>
 <style>
+h2 {
+    margin: 0;
+    padding: 0;
+}
 .card-summary {
     border: 1px solid var(--primary-color);
     padding: 2rem;
@@ -93,14 +97,7 @@ export default {
     flex-flow: column wrap;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-}
-
-.summary-description {
-    margin-bottom: 1.5rem;
-}
-
-.subTitle {
-    margin: 1.5rem 0rem .5rem 0rem;
+    margin: 1.5rem 0;
 }
 
 .text-area-field {
@@ -119,6 +116,10 @@ export default {
 
 .participant-list {
     margin-bottom: 2rem;
+}
+
+.participant-list:last-child {
+    margin-bottom: 0rem;
 }
 
 li {

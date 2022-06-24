@@ -9,8 +9,8 @@ import Draw from '../components/Draw.vue'
 <template>
     <section v-if="showInfo == true" class="home-info">
         <h1 class="main-title">Sorteo amigo invisible online</h1>
+        <p class="steps">Pasos a seguir:</p>
         <ul class="home-steps-todo">
-            <span>Pasos a seguir:</span>
             <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena los siguientes campos.</li>
             <li><img :src="dos" alt="Imagen número 2" class="step-icon">Pula el botón continuar y revisa que todo esté correcto.</li>
             <li><img :src="tres" alt="Imagen número 2" class="step-icon">Al finalizar, cada participante recibirá un correo electrónico con el resultado del sorteo.</li>
@@ -55,12 +55,11 @@ export default {
     margin-bottom: 1.5rem;
 }
 
-.home-steps-todo span {
-    display: block;
+.steps {
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--primary-color);
-    width: 7.5rem;
-    padding-bottom: .3rem;
+    width: fit-content;
+    padding-bottom: 5px;
 }
 
 .home-steps-todo li {

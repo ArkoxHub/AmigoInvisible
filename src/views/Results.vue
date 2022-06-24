@@ -6,7 +6,7 @@
             <button v-if="showResult == false" class="primary-button-link" @click="toggleResult">
                 <span>PULSA AQUÍ PARA VER RESULTADO</span>
             </button>
-            <button v-if="showResult == true" class="primary-button-link">
+            <button v-if="showResult == true" class="primary-button-link" @click="this.fireWorks()">
                 <span>{{ user.result }}</span>
             </button>
         </div>
@@ -15,7 +15,6 @@
 
 <script>
 import confetti from 'canvas-confetti'
-// this.fireWorks()
 export default {
     data() {
         return {
@@ -25,10 +24,9 @@ export default {
     },
     methods: {
         getUserData() {
-            const local = 'http://localhost:5445/getUserData/' + this.$route.params.id
-            const pro = "https://amigoinvisible-api.onrender.com/getUserData/" + this.$route.params.id
+            const URL = import.meta.env.VITE_API_URL + '/getUserData/' + this.$route.params.id
             // GET Fetch
-            fetch(pro)
+            fetch(URL)
                 .then(response => response.json())
                 .then(data => {
                     this.user = data.participants[0]
@@ -89,7 +87,7 @@ export default {
 
 <style scoped>
 p {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .result {

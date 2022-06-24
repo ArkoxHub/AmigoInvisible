@@ -13,7 +13,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1>Regalos</h1>
+    <h1 class="main-title">Regalos amigo invisible</h1>
     <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
     <!-- TODO Look why iframes are not shown in some browsers -->
     <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"
@@ -29,6 +29,6 @@ onMounted(() => {
 
 <style scoped>
 p {
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 </style>
