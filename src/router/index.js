@@ -7,8 +7,8 @@ import Recovery from '../views/Recovery.vue'
 import DrawSuccess from '../views/DrawSuccess.vue'
 import DrawError from '../views/DrawError.vue'
 import Results from '../views/Results.vue'
-import Cookies from '../views/Cookies.vue'
 import Privacy from '../views/Privacy.vue'
+import Cookies from '../views/Cookies.vue'
 
 const routes = [
     {
@@ -47,12 +47,12 @@ const routes = [
         component: Results
     },
     {
-        path: '/cookies',
+        path: '/politica-cookies',
         name: 'Cookies',
         component: Cookies
     },
     {
-        path: '/privacidad',
+        path: '/politica-privacidad',
         name: 'Privacy',
         component: Privacy
     },

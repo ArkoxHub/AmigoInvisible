@@ -13,19 +13,13 @@ onMounted(() => {
 
 <template>
     <section class="policy-container">
-        <h1>Política de privacidad de <span class="span-color">www.amigoinvisible.net/</span></h1>
+        <h1 class="main-title">Política de privacidad de www.amigoinvisible.net</h1>
 
         <p>Esta Aplicación recoge algunos Datos Personales de sus Usuarios.</p>
 
         <p>El presente documento puede imprimirse como referencia utilizando el comando de impresión en las opciones de
             configuración de cualquier navegador.
         </p>
-
-        <hr>
-
-        <h3>Titular y Responsable del tratamiento de los Datos</h3>
-        <p>Adrià Gual Andreu. C/ Violant d'Hongria 40, 4º 3ª. 43007 Tarragona</p>
-        <p><b>Correo electrónico de contacto del Titular:</b> sorteo@amigoinvisible.net</p>
 
         <hr>
 
@@ -296,6 +290,14 @@ onMounted(() => {
         <p>Definiciones y referencias legales</p>
         <p><a href="https://www.iubenda.com/privacy-policy/69506043/legal" target="_blank">Información completa</a></p>
 
+        <hr>
+
+        <h3>Titular y Responsable del tratamiento de los Datos</h3>
+        <p>Adrià Gual Andreu. C/ Violant d'Hongria 40, 4º 3ª. 43007 Tarragona</p>
+        <p><b>Correo electrónico de contacto del Titular:</b> sorteo@amigoinvisible.net</p>
+
+        <hr>
+
         <p style="font-size: .8rem" >Última revisión: 24 junio 2022</p>
     </section>
 </template>
@@ -309,6 +311,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.policy-container {
+    text-align: justify;
+}
+s
 h3 {
     color: var(--primary-color);
 }

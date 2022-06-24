@@ -94,6 +94,10 @@ a {
     z-index: 1;
 }
 
+.primary-button-link:hover {
+    color: #fff;
+}
+
 .primary-button-link span {
     position: relative;
     z-index: 2;

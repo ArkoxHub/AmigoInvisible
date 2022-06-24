@@ -18,8 +18,8 @@ const currentYear = computed(() => {
             <p>Copyright © {{ currentYear }} - Adrià Gual</p>
         </div>
         <div class="legal-container">
-            <router-link to="/cookies">Cookies</router-link>
-            <router-link to="/privacidad">Política de privacidad</router-link>
+            <router-link to="/politica-cookies">Cookies</router-link>
+            <router-link to="/politica-privacidad">Política de privacidad</router-link>
             <form id="paypalDonation" action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="hosted_button_id" value="VH8WQZ9AMYK48" />
                 <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donate_SM.gif" border="0"
@@ -30,6 +30,9 @@ const currentYear = computed(() => {
     </section>
     <!-- <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Muhammad Waqas Khan - Flaticon</a> -->
 </template>
+
+<script>
+</script>
 
 <style scoped>
 .footer-container {
