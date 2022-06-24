@@ -27,7 +27,16 @@ html {
 .main-title {
     text-align: center;
     margin-bottom: 2rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    background: rgb(255, 199, 59);
+    background: -moz-linear-gradient(90deg, rgba(255, 199, 59, 1) 0%, rgba(176, 149, 149, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255, 199, 59, 1) 0%, rgba(176, 149, 149, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 199, 59, 1) 0%, rgba(176, 149, 149, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffc73b", endColorstr="#b09595", GradientType=1);
+    font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab, droid serif, segoe ui, system-ui, Arial, sans-serif;
+    border-radius: var(--border-radius);
+    padding: .8rem 0;
 }
 
 .span-color,

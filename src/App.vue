@@ -1,9 +1,10 @@
 <template>
   <Header @toggleContainerOpacity="toggleOpacity" />
+
   <div :class="this.isHamburgerActive == false ? 'container' : 'container backScene'">
     <router-view></router-view>
   </div>
-  <!-- Footer needed -->
+  
   <Footer/>
 </template>
 

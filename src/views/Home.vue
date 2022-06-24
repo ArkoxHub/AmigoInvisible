@@ -9,17 +9,11 @@ import Draw from '../components/Draw.vue'
 <template>
     <section v-if="showInfo == true" class="home-info">
         <h1 class="main-title">Sorteo amigo invisible online</h1>
-        <p class="home-description">A continuación podrás realizar el sorteo del amigo invisible gratis online y recibir toda
-            la información en el correo electrónico de cada participante.</p>
         <ul class="home-steps-todo">
-            <span>Pasos a seguir</span>
-            <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena la siguiente información.</li>
-            <li><img :src="dos" alt="Imagen número 2" class="step-icon">Revisa que todo esté en orden y dale a
-                enviar.</li>
-            <li><img :src="tres" alt="Imagen número 2" class="step-icon">En caso de que alguien no haya
-                recibido el correo, puedes volver a recupear la información introducida previamente en
-                <router-link to="recuperacion-sorteo" class="router-link">recuperación</router-link>
-            </li>
+            <span>Pasos a seguir:</span>
+            <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena los siguientes campos.</li>
+            <li><img :src="dos" alt="Imagen número 2" class="step-icon">Pula el botón continuar y revisa que todo esté correcto.</li>
+            <li><img :src="tres" alt="Imagen número 2" class="step-icon">Al finalizar, cada participante recibirá un correo electrónico con el resultado del sorteo.</li>
         </ul>
 
         <span class="home-remainder">🍀Si necesitas ideas para regalos, visita la sección <router-link
@@ -65,8 +59,8 @@ export default {
     display: block;
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--primary-color);
-    width: 10rem;
-    padding-bottom: 1rem;
+    width: 7.5rem;
+    padding-bottom: .3rem;
 }
 
 .home-steps-todo li {
