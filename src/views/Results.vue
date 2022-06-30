@@ -1,5 +1,5 @@
 <template>
-    <h1 class="main-title">Resultado</h1>
+    <h1 class="main-title">Resultado amigo invisible</h1>
     <div class="result-container">
         <p>Hola <span class="span-color">{{ user.name }}</span>, debes haces hacer un regalo a...</p>
         <div class="result">

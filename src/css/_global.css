@@ -23,6 +23,15 @@ html {
     transition: all .5s;
 }
 
+h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.subtitle {
+    margin-bottom: 1rem;
+}
+
 /* TEXT */
 .main-title {
     text-align: center;

@@ -170,6 +170,7 @@ legend {
     border: 1px solid var(--main-bg-color);
     border-radius: var(--border-radius);
     margin-bottom: .6rem;
+    display: flex;
 }
 
 .exclamation-img {

@@ -3,12 +3,12 @@ import uno from '../assets/uno.png'
 import dos from '../assets/dos.png'
 import tres from '../assets/tres.png'
 import Draw from '../components/Draw.vue'
-
 </script>
 
 <template>
     <section v-if="showInfo == true" class="home-info">
-        <h1 class="main-title">Sorteo amigo invisible online</h1>
+        <h1 class="main-title">Amigo invisible online</h1>
+        <h2 class="subtitle">Sorteo amigo invisible online gratis</h2>
         <p class="steps">Pasos a seguir:</p>
         <ul class="home-steps-todo">
             <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena los siguientes campos.</li>
@@ -16,9 +16,8 @@ import Draw from '../components/Draw.vue'
             <li><img :src="tres" alt="Imagen número 2" class="step-icon">Al finalizar, cada participante recibirá un correo electrónico con el resultado del sorteo.</li>
         </ul>
 
-        <span class="home-remainder">🍀Si necesitas ideas para regalos, visita la sección <router-link
-                to="regalos-amigo-invisible" class="router-link">
-                regalos</router-link></span>
+        <h2 class="home-remainder">🍀Consulta la sección de 
+            <router-link to="regalos-amigo-invisible" class="router-link">regalos amigo invisible</router-link></h2>
     </section>
 
     <section class="draw-container">

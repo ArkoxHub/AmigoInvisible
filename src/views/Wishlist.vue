@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1 class="main-title">Lista de deseos</h1>
+    <h1 class="main-title">Lista de deseos amigo invisible</h1>
     <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
     <p>Aquí podrás crear una lista de regalos y todos los participantes podrán saber que es lo que quieres!</p>
 </template>

@@ -72,6 +72,7 @@ label {
     margin: auto;
     margin-bottom: .2rem;
     border: 1px solid var(--main-bg-color);
+    display: flex;
 }
 
 .exclamation-img {

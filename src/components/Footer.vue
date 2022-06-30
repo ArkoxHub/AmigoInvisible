@@ -1,4 +1,3 @@
-<!-- TODO Footer -->
 <script setup>
 import cajaRegalo from '../assets/caja-de-regalo.png'
 import { computed } from '@vue/reactivity';
@@ -20,6 +19,8 @@ const currentYear = computed(() => {
         <div class="legal-container">
             <router-link to="/politica-cookies">Cookies</router-link>
             <router-link to="/politica-privacidad">Política de privacidad</router-link>
+            <router-link to="/amigo-invisible">Más información</router-link>
+            <!-- PayPal -->
             <form id="paypalDonation" action="https://www.paypal.com/donate" method="post" target="_top">
                 <input type="hidden" name="hosted_button_id" value="VH8WQZ9AMYK48" />
                 <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donate_SM.gif" border="0"

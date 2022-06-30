@@ -1,18 +1,20 @@
 <template>
-    <section v-if="showCookiesContainer == true" class="cookies-container">
-        <div class="cookies-text">
-            <p>
-                Este sitio web utiliza cookies para garantizar la mejor experiencia en nuestro sitio web.
-            </p>
-            <p>
-                Al continuar utilizando este sitio web, usted acepta nuestro uso de cookies.
-            </p>
-        </div>
-        <div class="cookies-buttons">
-            <button class="cookies-accept-button button-cookies" @click="acceptCookies">Aceptar</button>
-            <button class="cookies-decline-button button-cookies" @click="declineCookies">Rechazar</button>
-        </div>
-    </section>
+    <transition>
+        <section v-if="showCookiesContainer == true" class="cookies-container">
+            <div class="cookies-text">
+                <p>
+                    Este sitio web utiliza cookies para garantizar la mejor experiencia para el usuario.
+                </p>
+                <p>
+                    Al continuar navegando, acepta nuestro uso de cookies.
+                </p>
+            </div>
+            <div class="cookies-buttons">
+                <button class="cookies-accept-button button-cookies" @click="acceptCookies">Aceptar</button>
+                <button class="cookies-decline-button button-cookies" @click="declineCookies">Rechazar</button>
+            </div>
+        </section>
+    </transition>
 </template>
 
 <script>
@@ -102,10 +104,21 @@ export default {
     color: #fff;
 }
 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  bottom: 0;
+}
+
 @media only screen and (max-width: 1000px) {
     .cookies-container {
         flex-flow: column nowrap;
-        padding: 1rem  1rem;
+        padding: 1rem 1rem;
         justify-content: center;
         align-items: center;
         height: fit-content;
