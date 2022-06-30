@@ -15,42 +15,42 @@ import Info from '../views/Info.vue'
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'Amigo invisible online | Amigo invisible | Sorteo amigo invisible',
         component: Home
     },
     {
         path: '/:catchAll(.*)',
-        name: 'NotFound',
+        name: 'Página no encontrada',
         component: NotFound
     },
     {
         path: '/regalos-amigo-invisible',
-        name: 'Gifts',
+        name: 'Regalos amigo invisible',
         component: Gifts
     },
     {
         path: '/lista-de-deseos',
-        name: 'Wishlist',
+        name: 'Lista de deseos amigo invisible',
         component: Wishlist
     },
     {
         path: '/recuperacion-sorteo',
-        name: 'Recovery',
+        name: 'Recuperación sorteo amigo invisible',
         component: Recovery
     },
     {
         path: '/sorteo-finalizado',
-        name: 'DrawSuccess',
+        name: 'Sorteo amigo invisible finalizado con éxito',
         component: DrawSuccess
     },
     {
         path: '/amigo-invisible',
-        name: 'Info',
+        name: 'Información amigo invisible',
         component: Info
     },
     {
         path: '/resultado/:id',
-        name: 'Results',
+        name: 'Resultados amigo invisible',
         component: Results
     },
     {
@@ -65,13 +65,13 @@ const routes = [
     },
     {
         path: '/error',
-        name: 'DrawError',
+        name: 'Error',
         component: DrawError
     },
 
     {
         path: '/404/:resource',
-        name: '404Resource',
+        name: 'Recurso no encontrado',
         component: NotFound,
         props: true
     },
@@ -82,5 +82,9 @@ const router = createRouter({
     routes
 })
 
+router.beforeEach((to, from, next) => {
+    document.title = to.name;
+    next();
+})
 
 export default router;
