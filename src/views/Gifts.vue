@@ -15,8 +15,7 @@ onMounted(() => {
 <template>
     <h1 class="main-title">Regalos amigo invisible</h1>
     <p class="span-color">Página en desarollo</p>
-    <p>¿Te faltan ideas para el <span class="span-color">regalo del amigo invisible</span>? ¡No pierdas más el tiempo!
-    </p>
+    <h2>¿Necesitas ideas para el <span class="span-color">regalo del amigo invisible</span>? ¡No pierdas más el tiempo!</h2>
     <p>Aquí tienes algunos productos para que puedas comprarlos directamente en Amazon con todos sus beneficios y al
         mejor precio.</p>
     <input class="input-field" type="search" placeholder="Buscar productos, categorías..." />
@@ -71,7 +70,8 @@ export default {
 </script>
 
 <style scoped>
-p {
+
+h2, p {
     margin-bottom: 2rem;
 }
 
