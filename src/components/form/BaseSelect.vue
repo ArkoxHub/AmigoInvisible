@@ -1,35 +1,50 @@
-<script setup>
-import UniqueID from '../../features/UniqueID';
-const uuid = UniqueID().getID();
-
-const props = defineProps({
-    label: String,
-    placeholder: String,
-    options: [Array, Object],
-    modelValue: [String, Number]
-})
-
-const emit = defineEmits(['update:modelValue'])
-function updateValue(value) {
-    emit('update:modelValue', value)
-}
-
-function getUID() {
-    console.log(UniqueID);
-}
-</script>
-
 <template>
-    <div class="form-control">
-        <label :for="uuid" v-if="label">{{ label }}</label>
-        <select :id="uuid" :value="modelValue" class="input-field" v-bind="$attrs"
-            @change="updateValue($event.target.value)">
-            <option v-for="option in options" :value="option.name" :key="option" :selected="option === modelValue">
-                <span>{{ option }}</span>
-            </option>
-        </select>
-    </div>
+    <label :for="uuid" v-if="label">
+        {{ label }}
+    </label>
+    <select :id="uuid" class="input-field" :value="modelValue" v-bind="{
+        ...$attrs,
+        onChange: ($event) => {
+            $emit('update:modelValue', $event.target.value);
+        },
+    }">
+        <option v-if="defaultValue" value="">{{ defaultValue }}</option>
+        <option v-for="option in options" :key="option" :value="option" :selected="option === modelValue">
+            {{ option }}
+        </option>
+    </select>
 </template>
+
+<script>
+import UniqueID from '../../features/UniqueID';
+
+export default {
+    props: {
+        label: {
+            type: [String, Object],
+            required: false
+        },
+        defaultValue: {
+            type: [String],
+            required: false,
+        },
+        modelValue: {
+            type: [String, Number],
+        },
+        options: {
+            type: Array,
+            required: true,
+        },
+    },
+
+    setup() {
+        const uuid = UniqueID().getID();
+        return {
+            uuid,
+        };
+    },
+};
+</script>
 
 <style scoped>
 label {
