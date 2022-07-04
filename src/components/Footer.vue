@@ -8,7 +8,7 @@ const currentYear = computed(() => {
 })
 </script>
 <template>
-    <section class="footer-container">
+    <footer class="footer-container">
         <div class="logo-container">
             <img class="logo-image" :src="cajaRegalo" alt="Logotipo Amigo Invisible Online">
             <router-link to="/">Amigo <span class="span-color">invisible</span></router-link>
@@ -28,7 +28,7 @@ const currentYear = computed(() => {
                 <img alt="" border="0" src="https://www.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1" />
             </form>
         </div>
-    </section>
+    </footer>
     <!-- <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Muhammad Waqas Khan - Flaticon</a> -->
 </template>
 
