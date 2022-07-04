@@ -2,14 +2,14 @@
 import UniqueID from '../../features/UniqueID';
 const uuid = UniqueID().getID();
 
-const props = defineProps({
+defineProps({
     label: String,
     placeholder: String,
-    options: [Array, Object],
-    participant: Object,
+    options: [Array],
     modelValue: [String, Number]
 })
 
+// v-bind emit function
 const emit = defineEmits(['update:modelValue'])
 function updateValue(value) {
     emit('update:modelValue', value)
@@ -47,7 +47,6 @@ label {
 }
 
 select {
-    text-transform: capitalize;
     font-size: 1.1rem;
     letter-spacing: .2px;
     cursor: pointer;

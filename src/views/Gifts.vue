@@ -25,8 +25,7 @@ onMounted(() => {
 
     <!-- CATEGORIES ASIDE -->
     <section class="categories">
-        <p>Selecciona la categoría</p>
-        <BaseSelect :options="getCategoryNames" v-model="categorySelected" />
+        <BaseSelect label="Selecciona la categoría" :options="getCategoryNames" v-model="categorySelected" />
     </section>
 
     <!-- PRODUCTS  -->
@@ -47,7 +46,6 @@ export default {
     data() {
         return {
             categorySelected: 'todos',
-            //#region CATEGORIES PRODUCTS
             categories: [
                 {
                     name: 'todos',
@@ -127,7 +125,6 @@ export default {
                     ]
                 }
             ]
-            //#endregion
         }
     },
     computed: {
@@ -164,12 +161,8 @@ input[type=search]:focus {
 /* END SEARCH INPUT */
 
 /* CATEGORIES ASIDE */
-.categories p {
-    margin-bottom: 0;
-    padding: 0px 10px;
-}
 
-.categories>div {
+.categories > div {
     padding: 10px;
 }
 
