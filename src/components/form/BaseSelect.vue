@@ -1,50 +1,35 @@
-<template>
-    <label :for="uuid" v-if="label">
-        {{ label }}
-    </label>
-    <select :id="uuid" class="input-field" :value="modelValue" v-bind="{
-        ...$attrs,
-        onChange: ($event) => {
-            $emit('update:modelValue', $event.target.value);
-        },
-    }">
-        <option v-if="defaultValue" value="">{{ defaultValue }}</option>
-        <option v-for="option in options" :key="option" :value="option" :selected="option === modelValue">
-            {{ option }}
-        </option>
-    </select>
-</template>
-
-<script>
+<script setup>
 import UniqueID from '../../features/UniqueID';
+const uuid = UniqueID().getID();
 
-export default {
-    props: {
-        label: {
-            type: [String, Object],
-            required: false
-        },
-        defaultValue: {
-            type: [String],
-            required: false,
-        },
-        modelValue: {
-            type: [String, Number],
-        },
-        options: {
-            type: Array,
-            required: true,
-        },
-    },
+const props = defineProps({
+    label: String,
+    placeholder: String,
+    options: [Array, Object],
+    modelValue: [String, Number]
+})
 
-    setup() {
-        const uuid = UniqueID().getID();
-        return {
-            uuid,
-        };
-    },
-};
+const emit = defineEmits(['update:modelValue'])
+function updateValue(value) {
+    emit('update:modelValue', value)
+}
+
+function getUID() {
+    console.log(UniqueID);
+}
 </script>
+
+<template>
+    <div class="form-control">
+        <label :for="uuid" v-if="label">{{ label }}</label>
+        <select :id="uuid" :value="modelValue" class="input-field" v-bind="$attrs"
+            @change="updateValue($event.target.value)">
+            <option v-for="option in options" :value="option.name" :key="option" :selected="option === modelValue">
+                <span>{{ option }}</span>
+            </option>
+        </select>
+    </div>
+</template>
 
 <style scoped>
 label {
