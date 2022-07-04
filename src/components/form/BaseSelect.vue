@@ -28,10 +28,11 @@ function getUID() {
             :value="modelValue" 
             class="input-field" 
             v-bind="$attrs"
-            @change="updateValue($event.target.value)">
+            @input="updateValue($event.target.value)">
         <option 
             v-for="option in options" :key="option" 
             :value="option"  
+            :selected="option === modelValue"
         >
             <span>{{ option }}</span>
         </option>
