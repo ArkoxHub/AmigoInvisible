@@ -25,7 +25,7 @@ onMounted(() => {
 
     <!-- CATEGORIES ASIDE -->
     <section class="categories">
-        <BaseSelect label="Selecciona la categoría" :options="getCategoryNames" v-model:value="categorySelected" />
+        <BaseSelect label="Selecciona la categoría" :options="getCategoryNames" v-model="this.categorySelected" />
     </section>
 
     <!-- PRODUCTS  -->
