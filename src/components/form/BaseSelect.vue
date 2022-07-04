@@ -25,7 +25,7 @@ function getUID() {
         <label :for="uuid" v-if="label">{{ label }}</label>
         <select 
             :id="uuid" 
-            :value="modelValue" 
+            :value="props.modelValue" 
             class="input-field" 
             v-bind="$attrs"
             @input="updateValue($event.target.value)">
