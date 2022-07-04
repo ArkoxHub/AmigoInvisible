@@ -22,9 +22,9 @@ function getUID() {
 <template>
     <div class="form-control">
         <label :for="uuid" v-if="label">{{ label }}</label>
-        <select :id="uuid" :value="modelValue" class="input-field" v-bind="$attrs"
+        <select :id="uuid" v-model="modelValue" :value="modelValue" class="input-field" v-bind="$attrs"
             @change="updateValue($event.target.value)">
-            <option v-for="option in options" :value="option.name" :key="option" :selected="option === modelValue">
+            <option v-for="option in options" :value="option" :key="option" :selected="option === modelValue">
                 <span>{{ option }}</span>
             </option>
         </select>
