@@ -25,7 +25,7 @@ onMounted(() => {
 
     <!-- CATEGORIES ASIDE -->
     <section class="categories">
-        <BaseSelect label="Selecciona la categoría" :options="getCategoryNames" v-model="categorySelected" />
+        <BaseSelect label="Selecciona la categoría" :options="categoryNames" v-model="categorySelected" />
     </section>
 
     <!-- PRODUCTS  -->
@@ -46,6 +46,7 @@ export default {
     data() {
         return {
             categorySelected: 'todos',
+            categoryNames: '',
             categories: [
                 {
                     name: 'todos',
@@ -131,9 +132,10 @@ export default {
         getProductsCategorySelected() {
             return this.categories.find(category => category.name == this.categorySelected).products;
         },
-        getCategoryNames() {
-            return this.categories.map(category => category.name);
-        }
+
+    },
+    beforeMount() {
+        this.categoryNames = this.categories.map(category => category.name);
     }
 }
 
@@ -162,7 +164,7 @@ input[type=search]:focus {
 
 /* CATEGORIES ASIDE */
 
-.categories > div {
+.categories>div {
     padding: 10px;
 }
 
