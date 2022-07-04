@@ -2,10 +2,10 @@
 import UniqueID from '../../features/UniqueID';
 const uuid = UniqueID().getID();
 
-defineProps({
+const props = defineProps({
     label: String,
     placeholder: String,
-    options: [Array],
+    options: [Array, Object],
     modelValue: [String, Number]
 })
 
@@ -32,7 +32,6 @@ function getUID() {
         <option 
             v-for="option in options" :key="option" 
             :value="option"  
-            :selected="option === modelValue"
         >
             <span>{{ option }}</span>
         </option>
@@ -47,6 +46,7 @@ label {
 }
 
 select {
+    text-transform: capitalize;
     font-size: 1.1rem;
     letter-spacing: .2px;
     cursor: pointer;
