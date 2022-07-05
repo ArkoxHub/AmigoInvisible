@@ -27,8 +27,8 @@ onMounted(() => {
     <section class="categories">
         <BaseSelect 
             label="Selecciona la categoría" 
-            :options="categories.names" 
-            v-model="categories.categorySelected"
+            :options="getCategories" 
+            v-model="categorySelected"
         />
     </section>
 
@@ -49,9 +49,9 @@ export default {
     components: { BaseSelect },
     data() {
         return {
+            categorySelected: 'todos',
             categories: {
-                names: [],
-                categorySelected: 'todos'
+                names: []
             },
             catalog: [
                 {
@@ -139,8 +139,12 @@ export default {
     },
     computed: {
         getProductsCategorySelected() {
-            return this.catalog.find(catalog => catalog.category == this.categories.categorySelected).products;
+            return this.catalog.find(catalog => catalog.category == this.categorySelected).products;
         },
+
+        getCategories() {
+            return this.catalog.map(category => category.category);
+        }
     }
 }
 
