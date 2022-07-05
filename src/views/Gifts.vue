@@ -27,8 +27,8 @@ onMounted(() => {
     <section class="categories">
         <BaseSelect 
             label="Selecciona la categoría" 
-            :options="getCategoryNames" 
-            v-model="categorySelected" 
+            :options="categoriesList.categories" 
+            v-model="categoriesList.categorySelected" 
         />
     </section>
 
@@ -49,10 +49,13 @@ export default {
     components: { BaseSelect },
     data() {
         return {
-            categorySelected: 'todos',
-            categories: [
+            categoriesList: {
+                categories: ['todos', 'videojuegos', 'deportes', 'juguetes', 'hogar y cocina', 'bricolaje', 'cheques regalo'],
+                categorySelected: 'todos'
+            },
+            catalog: [
                 {
-                    name: 'todos',
+                    category: 'todos',
                     products: [
                         '<iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=arkox-21&language=es_ES&o=30&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B01MZ94DLA&linkId=471980c5996468433b17ea631beda34f"></iframe>',
 
@@ -110,14 +113,14 @@ export default {
                         '<iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=arkox-21&language=es_ES&o=30&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07DXXS2ZJ&linkId=201f79a2cc8a95c5fa94b2e2509444f5"></iframe>',
                     ]
                 },
-                { name: 'videojuegos', products: [] },
-                { name: 'deportes', products: [] },
-                { name: 'ropa', products: [] },
-                { name: 'joyería', products: [] },
-                { name: 'hogar y cocina', products: [] },
-                { name: 'bricolaje', products: [] },
+                { category: 'videojuegos', products: [] },
+                { category: 'deportes', products: [] },
+                { category: 'ropa', products: [] },
+                { category: 'joyería', products: [] },
+                { category: 'hogar y cocina', products: [] },
+                { category: 'bricolaje', products: [] },
                 {
-                    name: 'cheques regalo', id: 'cheques-regalo', products: [
+                    category: 'cheques regalo', id: 'cheques-regalo', products: [
                         '<iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=arkox-21&language=es_ES&o=30&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07CXKK75M&linkId=51aa9997a8e9f6e68821b29c97c2c635"></iframe>',
 
                         '<iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=FFFFFF&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=arkox-21&language=es_ES&o=30&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07R3DBQ6Z&linkId=69f4361e0037d2230b735347d25d250d"></iframe>',
@@ -130,13 +133,16 @@ export default {
             ]
         }
     },
+    beforeMount() {
+        
+    },
     computed: {
         getProductsCategorySelected() {
-            return this.categories.find(category => category.name == this.categorySelected).products;
+            return this.catalog.find(catalog => catalog.category == this.categoriesList.categorySelected).products;
         },
-        getCategoryNames() {
-            return this.categories.map(category => category.name);
-        }
+        // getCategoryNames() {
+        //     return this.categories.map(category => category.name);
+        // }
     }
 }
 
