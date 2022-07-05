@@ -13,20 +13,34 @@ const emit = defineEmits(['update:modelValue'])
 function updateValue(value) {
     emit('update:modelValue', value)
 }
-
-function getUID() {
-    console.log(UniqueID);
-}
 </script>
 
 <template>
     <div class="form-control">
-        <label :for="uuid" v-if="label">{{ label }}</label>
-        <select :id="uuid" :value="modelValue" class="input-field" v-bind="$attrs"
-            @change="updateValue($event.target.value)">
-            <option v-for="option in options" :value="option" :key="option" :selected="option === modelValue">
-                <span>{{ option }}</span>
-            </option>
+
+        <label 
+            :for="uuid" 
+            v-if="props.label"
+        >
+            {{ props.label }}
+        </label>
+
+        <select 
+            :id="uuid" 
+            class="input-field" 
+            :value="modelValue" 
+            v-bind="$attrs"
+            @change="updateValue($event.target.value)"
+        >
+
+        <option 
+            v-for="option in options" 
+            :key="option" 
+            :value="option" 
+            :selected="option === modelValue"
+        >
+            {{ option }}
+        </option>
         </select>
     </div>
 </template>

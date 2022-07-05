@@ -292,6 +292,10 @@ onMounted(() => {
 
         <hr>
 
+        <p>En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables</p>
+
+        <hr>
+
         <h3>Titular y Responsable del tratamiento de los Datos</h3>
         <p>Adrià Gual Andreu. C/ Violant d'Hongria 40, 4º 3ª. 43007 Tarragona</p>
         <p><b>Correo electrónico de contacto del Titular:</b> sorteo@amigoinvisible.net</p>
