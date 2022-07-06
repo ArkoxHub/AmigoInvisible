@@ -1,9 +1,3 @@
-<script setup>
-import addUser from '../assets/images/add-user.png'
-import next from '../assets/images/next.png'
-import closeIcon from '../assets/images/close.png'
-</script>
-
 <template>
     <form 
         action="#" 
@@ -51,7 +45,7 @@ import closeIcon from '../assets/images/close.png'
                 class="close-icon" 
                 v-if="index > 2"
             >
-                <img :src="closeIcon" alt="Cerrar tarjeta">
+                <img src="../assets/images/close.png" alt="Cerrar tarjeta">
             </span>
             <Participant 
                 @updateParticipant="updateParticipant" 
@@ -69,7 +63,7 @@ import closeIcon from '../assets/images/close.png'
                 @click.prevent="addParticipantCard(); randomGradient();"
             >
                 <span>Añadir</span>
-                <img :src="addUser" class="draw-icon" alt="Añadir usuario" />
+                <!-- <img :src="addUser" class="draw-icon" alt="Añadir usuario" /> -->
             </button>
             <button 
                 class="primary-button-link" 
@@ -77,7 +71,7 @@ import closeIcon from '../assets/images/close.png'
                 type="text"
             >
                 <span>Continuar</span>
-                <img :src="next" class="draw-icon" alt="Siguiente paso" />
+                <!-- <img :src="next" class="draw-icon" alt="Siguiente paso" /> -->
             </button>
         </div>
     </form>
