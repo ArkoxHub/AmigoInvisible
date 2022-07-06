@@ -1,5 +1,6 @@
 <!-- Script Attrs -->
 <script>
+import exclamationMark from '../../assets/images/exclamation-mark.png'
 export default {
     inheritAttrs: false
 }
@@ -40,7 +41,7 @@ function updateValue(value) {
             {{ props.label }}
         </label>
         <label class="error-label" v-if="errorLabel != ''">
-            <img class="exclamation-img" src="../../assets/exclamation-mark.png" alt="Validación incorrecta">
+            <img class="exclamation-img" :src="exclamationMark" alt="Validación incorrecta">
             {{ errorLabel}}
         </label>
         <input 
