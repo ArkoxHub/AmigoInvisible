@@ -1,3 +1,7 @@
+<script>
+import exclamationMark from '../../assets/images/exclamation-mark.png'
+</script>
+
 <template>
     <fieldset :style="{ 'background': backgroundColor }">
         <legend v-if="participant.name == '' && indexItem == 1" id="host">Participante {{ indexItem }} (anfitrión)</legend>
@@ -61,7 +65,7 @@
         <div v-if="parentParticipant.errors != ''" class="errors-container">
             <template v-for="(item, index) in parentParticipant.errors" :key="index">
                 <span class="participant-error">
-                    <img class="exclamation-img" src="../assets/exclamation-mark.png" alt="Validación incorrecta">
+                    <img class="exclamation-img" :src="exclamationMark" alt="Validación incorrecta">
                     {{ item.message }}
                 </span>
             </template>
