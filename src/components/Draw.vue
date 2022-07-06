@@ -1,3 +1,9 @@
+<script setup>
+import addUser from '../assets/images/add-user.png'
+import next from '../assets/images/next.png'
+import closeIcon from '../assets/images/close.png'
+</script>
+
 <template>
     <form 
         action="#" 
@@ -45,7 +51,7 @@
                 class="close-icon" 
                 v-if="index > 2"
             >
-                <img src="../assets/close.png" alt="Cerrar tarjeta">
+                <img :src="closeIcon" alt="Cerrar tarjeta">
             </span>
             <Participant 
                 @updateParticipant="updateParticipant" 
@@ -62,7 +68,8 @@
                 class="primary-button-link"
                 @click.prevent="addParticipantCard(); randomGradient();"
             >
-                <span>Agregar</span>
+                <span>Añadir</span>
+                <img :src="addUser" class="draw-icon" alt="Añadir usuario" />
             </button>
             <button 
                 class="primary-button-link" 
@@ -70,6 +77,7 @@
                 type="text"
             >
                 <span>Continuar</span>
+                <img :src="next" class="draw-icon" alt="Siguiente paso" />
             </button>
         </div>
     </form>
@@ -397,6 +405,12 @@ export default {
 
 .close-icon img {
     width: 1.3rem;
+}
+
+.draw-icon {
+    width: .9rem;
+    padding-left: 3px;
+    z-index: 50;
 }
 
 @media only screen and (max-width: 768px) {}

@@ -5,27 +5,30 @@ import UniqueID from '../features/UniqueID'
 <template>
     <section class="summary-container">
         <h1 class="main-title">Resumen del sorteo</h1>
-        <p class="summary-description">Verifica la información introducida y a continuación pulsa el botón <span class="span-color">terminar</span> para recibir el resultado del sorteo en el correo de los participantes.</p>
+        <p class="summary-description">Verifica la información introducida y a continuación pulsa el botón <span class="span-color">terminar</span> para recibir el resultado del sorteo en el correo de cada participante.</p>
 
         <!-- Card Summary -->
         <div class="card-summary">
-            <h2 class="subTitle">Sorteo</h2>
-            <p><strong class="span-text">Título: </strong> {{ draw.name }}</p>
-            <p v-if="draw.price != ''"><strong class="span-text">Precio orientativo: </strong> {{ draw.price }}</p>
-            <p v-if="draw.date != ''"><strong class="span-text">Fecha: </strong> {{ draw.date }}</p>
+            <div class="card-header">
+                <h2 class="subTitle">Sorteo</h2>
+                <p><strong class="span-text">- Título: </strong> {{ draw.name }}</p>
+                <p v-if="draw.price != ''"><strong class="span-text">- Precio orientativo: </strong> {{ draw.price }}</p>
+                <p v-if="draw.date != ''"><strong class="span-text">- Fecha: </strong> {{ draw.date }}</p>
+            </div>
 
-            <!-- Participants -->
-            <h2 class="subTitle">Participantes</h2>
-            <ul class="participant-list" v-for="(participant, index) in draw.participants">
-                <li><strong class="span-text">Participante {{ index + 1 }}: </strong> {{ participant.name }}</li>
-                <li><strong class="span-text">Email: </strong>: {{ participant.email }}</li>
-                <li v-if="participant.exclude != ''"><strong class="span-text">Exclusiones: </strong>{{ participant.exclude }}</li>
-            </ul>
+            <div class="card-body">
+                <h2 class="subTitle">Participantes</h2>
+                <ul class="participant-list" v-for="(participant, index) in draw.participants">
+                    <li><strong class="span-text">Participante {{ index + 1 }}: </strong> {{ participant.name }}</li>
+                    <li><strong class="span-text">Email: </strong>: {{ participant.email }}</li>
+                    <li v-if="participant.exclude != ''"><strong class="span-text">Exclusiones: </strong>{{ participant.exclude }}</li>
+                </ul>
+            </div>
         </div>
 
         <!-- Comments -->
         <div class="comments-container">
-            <h2 class="subTitle">Añadir comentario</h2>
+            <h2>Añadir comentario</h2>
             <textarea placeholder="Ejemplo: La entrega de los regalos será en casa de Voldemort 🧙‍♂️" class="text-area-field" maxlength="1000" v-model="draw.comments"></textarea>
         </div>
 
@@ -86,10 +89,12 @@ export default {
 }
 </script>
 <style>
-h2 {
-    margin: 0;
+.subTitle {
+    margin-bottom: .3rem;
     padding: 0;
+    text-transform: uppercase;
 }
+
 .card-summary {
     border: 1px solid var(--primary-color);
     padding: 2rem;
@@ -98,6 +103,10 @@ h2 {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     margin: 1.5rem 0;
+}
+
+.card-header {
+    margin-bottom: 2rem;
 }
 
 .text-area-field {
@@ -115,7 +124,7 @@ h2 {
 }
 
 .participant-list {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .participant-list:last-child {

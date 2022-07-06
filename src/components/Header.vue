@@ -1,5 +1,5 @@
 <script setup>
-import cajaRegalo from '../assets/caja-de-regalo.png'
+import cajaRegalo from '../assets/images/caja-de-regalo.png'
 </script>
 
 <template>
