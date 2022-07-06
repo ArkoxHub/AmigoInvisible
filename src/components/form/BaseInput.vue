@@ -1,14 +1,7 @@
-<!-- Script Attrs -->
-<script>
-import exclamationMark from '../../assets/images/exclamation-mark.png'
-export default {
-    inheritAttrs: false
-}
-</script>
-
 <!-- Script Setup -->
 <script setup>
 import UniqueID from '../../features/UniqueID'
+import exclamationMark from '../../assets/images/exclamation-mark.png'
 
 const uuid = UniqueID().getID()
 
@@ -58,6 +51,13 @@ function updateValue(value) {
         <p v-if="showError">{{ errorMessage }}</p>
     </div>
 </template>
+
+<!-- Script Attrs -->
+<script>
+export default {
+    inheritAttrs: false
+}
+</script>
 
 <style scoped>
 label {

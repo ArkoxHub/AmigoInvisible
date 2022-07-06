@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import exclamationMark from '../../assets/images/exclamation-mark.png'
 </script>
 
