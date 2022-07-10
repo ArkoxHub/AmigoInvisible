@@ -4,7 +4,7 @@ html {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 1.1rem;
+    font-size: var(--font-size);
     background-color: var(--main-bg-color);
     color: var(--font-text);
     letter-spacing: .2px;
@@ -90,6 +90,8 @@ a {
     width: 200px;
     height: 50px;
     background: var(--primary-color);
+    color: var(--font-text-secondary);
+    font-size: var(--font-size-buttons);
     font-weight: 500;
     border: none;
     cursor: pointer;
@@ -98,13 +100,12 @@ a {
     border-radius: 5px;
     position: relative;
     overflow: hidden;
-    color: var(--font-text-secondary);
     font-weight: 500;
     z-index: 1;
 }
 
 .primary-button-link:hover {
-    color: #fff;
+    color: var(--font-text);
 }
 
 .primary-button-link span {
@@ -130,6 +131,19 @@ a {
 .primary-button-link:hover::after {
     transform: scale(300);
     background: dodgerblue;
+}
+
+.button-reverse {
+    background: dodgerblue;
+    color: var(--font-text);
+}
+
+.button-reverse:hover {
+    color: var(--font-text-secondary);
+}
+
+.button-reverse:hover::after {
+    background: var(--primary-color);
 }
 
 /** FORM **/

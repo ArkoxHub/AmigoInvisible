@@ -6,7 +6,8 @@ const props = defineProps({
     label: String,
     placeholder: String,
     options: [Array, Object],
-    modelValue: [String, Number]
+    modelValue: [String, Number],
+    defaultValue: String
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -33,6 +34,9 @@ function updateValue(value) {
             @change="updateValue($event.target.value)"
         >
 
+        <!-- Default option -->
+        <option v-if="defaultValue" value="">{{ defaultValue }}</option>
+
         <option 
             v-for="option in options" 
             :key="option" 
@@ -52,7 +56,6 @@ label {
 }
 
 select {
-    text-transform: capitalize;
     font-size: 1.1rem;
     letter-spacing: .2px;
     cursor: pointer;
