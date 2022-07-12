@@ -1,7 +1,7 @@
 <template>
     <h1 class="main-title">Resultado amigo invisible</h1>
     <div class="result-container">
-        <p>Hola <span class="span-color">{{ user.name }}</span>, debes haces hacer un regalo a...</p>
+        <p>Hola <span class="span-color">{{ user.name }}</span>, debes hacer hacer un regalo a...</p>
         <div class="result">
             <button v-if="showResult == false" class="primary-button-link" @click="toggleResult">
                 <span>PULSA AQUÍ PARA VER RESULTADO</span>
