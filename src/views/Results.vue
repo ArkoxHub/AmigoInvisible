@@ -24,14 +24,12 @@ export default {
     },
     methods: {
         getUserData() {
-            const URL = import.meta.env.VITE_API_URL + '/getUserData/' + this.$route.params.id
+            const URL = import.meta.env.VITE_API_URL + '/getUserData/' + this.$route.params.id // Get ID fro URL
             // GET Fetch
             fetch(URL)
                 .then(response => response.json())
                 .then(data => {
                     this.user = data.participants[0]
-                    console.log(this.user.name);
-                    
                 })
                 .catch(error => {
                     console.log(error);
