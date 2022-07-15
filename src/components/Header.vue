@@ -239,6 +239,7 @@ export default {
 }
 
 @media only screen and (max-width: 767px) {
+
     .left-nav {
         margin-left: 0rem;
         width: 100%;
@@ -252,6 +253,12 @@ export default {
 
     .hamburger {
         right: 1.5rem;
+        height: 23px;
+        width: 35px;
+    }
+
+    .hamburger-is-open .hamburger_item_last{
+        transform: translate(0, -8px) rotate(-44deg);
     }
 }
 </style>

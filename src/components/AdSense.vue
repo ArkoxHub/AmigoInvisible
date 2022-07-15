@@ -4,8 +4,7 @@
      :data-ad-client="adClient"
      :data-ad-slot="adSlot"
      :data-ad-format="adFormat"
-     :data-full-width-responsive="adResponsive">
-</ins>
+     :data-ad-layout-key="adLayoutKey"></ins>
 </template>
 <script>
 export default {
@@ -20,15 +19,19 @@ export default {
         },
         adSlot: {
             type: String,
-            default: '2225887014'
+            default: '6640608892'
         },
         adFormat: {
             type: String,
-            default: 'auto'
+            default: 'fluid'
         },
         adResponsive: {
             type: String,
             default: 'true'
+        },
+        adLayoutKey: {
+            type: String,
+            default: '-fb+5w+4e-db+86'
         }
     },
     mounted() {

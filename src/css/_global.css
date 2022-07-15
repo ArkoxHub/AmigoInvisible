@@ -268,4 +268,8 @@ select.input-field {
     html {
         font-size: var(--font-size-mobile);
     }
+
+    .d-active {
+        height: 203px;
+    }
 }
