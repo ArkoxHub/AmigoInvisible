@@ -10,6 +10,7 @@
     /** FONTS **/
     --main-font: 'monospace';
     --font-size: 1.1rem;
+    --font-size-mobile: .95rem;
     --font-header: 1.5rem;
     --font-size-buttons: .76rem;
 
