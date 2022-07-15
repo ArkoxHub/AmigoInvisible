@@ -1,7 +1,7 @@
 <template>
   <Header @toggleContainerOpacity="toggleOpacity" />
 
-  <section :class="this.isHamburgerActive == false ? 'container' : 'container backScene'">
+  <section :class="this.isHamburgerActive == false ? 'container' : 'container backScene'" style="min-height: 85vh !important;">
     <router-view></router-view>
   </section>
   
@@ -41,7 +41,7 @@ export default {
   margin-top: 7rem;
   z-index: 1;
   position: relative;
-  min-height: 85vh !important;
+  min-height: 85vh;
 }
 
 @media only screen and (max-width: 768px) {
