@@ -256,9 +256,12 @@ export default {
         height: 23px;
         width: 35px;
     }
-
-    .hamburger-is-open .hamburger_item_last{
-        transform: translate(0, -8px) rotate(-44deg);
+    
+    .hamburger-is-open .hamburger_item_first {
+        transform: translate(0, 11px) rotate(44deg);
+    }
+    .hamburger-is-open .hamburger_item_last {
+        transform: translate(0, -11px) rotate(-44deg);
     }
 }
 </style>
