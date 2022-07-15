@@ -41,7 +41,7 @@ export default {
   margin-top: 7rem;
   z-index: 1;
   position: relative;
-  min-height: 85vh;
+  min-height: 85vh !important;
 }
 
 @media only screen and (max-width: 768px) {
