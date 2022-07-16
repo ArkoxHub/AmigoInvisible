@@ -48,6 +48,10 @@ h2 {
     padding: .8rem 0;
 }
 
+.text-centered {
+    text-align: center;
+}
+
 .span-color,
 .span-color-link {
     color: var(--primary-color);
@@ -63,6 +67,8 @@ a {
 
 .router-link {
     color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .d-none {
@@ -213,6 +219,21 @@ select.input-field {
     animation: spin 1s infinite linear
 }
 
+hr {
+    border: 0;
+    margin: 5rem 0;
+}
+
+hr::before {
+    content: '*   *   *   *   *';
+    display: block;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -271,5 +292,9 @@ select.input-field {
 
     .d-active {
         height: 203px;
+    }
+
+    hr {
+        margin: 3rem 0;
     }
 }

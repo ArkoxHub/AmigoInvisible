@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
 import Gifts from '../views/Gifts.vue'
 import Wishlist from '../views/Wishlist.vue'
+import WishlistDashboard from '../views/WishlistDashboard.vue'
 import Recovery from '../views/Recovery.vue'
 import DrawSuccess from '../views/DrawSuccess.vue'
 import DrawError from '../views/DrawError.vue'
@@ -15,7 +16,7 @@ import Info from '../views/Info.vue'
 const routes = [
     {
         path: '/',
-        name: 'Amigo invisible online | Amigo invisible | Sorteo amigo invisible',
+        name: 'Amigo invisible online. Generador aleatorio para el sorteo del amigo invisible vía email gratis. Regalos para el amigo invisible.',
         component: Home
     },
     {
@@ -32,6 +33,11 @@ const routes = [
         path: '/lista-de-deseos',
         name: 'Lista de deseos amigo invisible',
         component: Wishlist
+    }, ,
+    {
+        path: '/lista-de-deseos/:groupId/:participantId',
+        name: 'Lista de deseos privada | Sorteo del amigo invisible',
+        component: WishlistDashboard
     },
     {
         path: '/recuperacion-sorteo',

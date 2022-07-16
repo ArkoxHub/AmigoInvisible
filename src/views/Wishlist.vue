@@ -13,9 +13,18 @@ onMounted(() => {
 
 <template>
     <h1 class="main-title">Lista de deseos amigo invisible</h1>
-    <p>Estamos trabajando actualmente en ofrecerte este servicio.</p>
-    <p>Aquí podrás crear una lista de regalos y todos los participantes podrán saber que es lo que quieres!</p>
+    <h2>Con tu identificación podrás</h2>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            
+        }
+    },
+}
+</script>
 
 <style scoped>
 p {
