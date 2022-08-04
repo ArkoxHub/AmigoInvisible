@@ -32,6 +32,16 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.center-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+small {
+    color: #ccc;
+}
+
 /* TEXT */
 .main-title {
     text-align: center;
@@ -88,6 +98,11 @@ a {
     opacity: 1;
 }
 
+/* IMAGES */
+.image-medium {
+    width: 300px;
+}
+
 /* BUTTONS */
 .primary-button-link {
     display: inline-flex;
@@ -137,6 +152,10 @@ a {
 .primary-button-link:hover::after {
     transform: scale(300);
     background: dodgerblue;
+}
+
+.full-width {
+    width: 100% !important;
 }
 
 .button-reverse {
@@ -296,5 +315,11 @@ hr::before {
 
     hr {
         margin: 3rem 0;
+    }
+
+    .center-container-mobile {
+        display: flex;
+        justify-content: center;
+        text-align: center;
     }
 }

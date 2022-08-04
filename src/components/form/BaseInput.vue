@@ -12,6 +12,7 @@ const props = defineProps({
     className: String,
     maxLength: { type: String, required: false },
     minLenght: { type: String, required: false },
+    classLabel: { type: String, required: false },
     showError: { type: Boolean, default: false },
     errorLabel: { type: String, required: false, default: '' },
 })
@@ -28,8 +29,9 @@ function updateValue(value) {
 <template>
     <div class="form-control">
         <label 
-            :for="uuid" 
             v-if="props.label"
+            :for="uuid" 
+            :class="classLabel"
         >
             {{ props.label }}
         </label>

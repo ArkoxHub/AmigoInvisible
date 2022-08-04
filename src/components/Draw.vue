@@ -75,8 +75,6 @@
             </button>
         </div>
 
-        <!-- AdSense -->
-        <AdSense />
     </form>
 
     <!-- Summary Component -->
@@ -91,11 +89,10 @@
 import BaseInput from './form/BaseInput.vue'
 import Participant from './Participant.vue'
 import Summary from './Summary.vue'
-import AdSense from './AdSense.vue'
 import UniqueID from '../features/UniqueID'
 
 export default {
-    components: { BaseInput, Participant, Summary, AdSense },
+    components: { BaseInput, Participant, Summary },
     emits: ['toggleInfo'],
     data() {
         return {

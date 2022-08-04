@@ -1,8 +1,12 @@
 <script setup>
-import { useFetch } from '../features/fetch.js'
+import { getData } from '../services/ArkoxAPI.js'
+
+onMounted(() => {
+    window.scrollTo(0, 0);
+})
 
 const url = import.meta.env.VITE_API_URL + '/getDraw/' + '62d2c909f84a973f386fae48'
-const { data, error } = useFetch(url)
+const { data, error } = getData(url)
 </script>
 
 <template>
@@ -23,7 +27,6 @@ const { data, error } = useFetch(url)
 </template>
 
 <script>
-
 
 export default {
 
