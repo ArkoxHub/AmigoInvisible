@@ -162,6 +162,15 @@ export default {
     transition: all .5s ease;
 }
 
+.right-nav a:hover span {
+    color: black;
+    transform: all .5s ease;
+}
+
+.right-nav-mobile {
+    display: none;
+}
+
 /** LOGO NAV */
 .logo-image {
     display: block;

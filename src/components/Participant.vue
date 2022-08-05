@@ -9,7 +9,6 @@ import exclamationMark from '../assets/images/exclamation-mark.png'
         <legend v-else-if="participant.name == ''">Participante {{ indexItem }}</legend>
         <legend v-else>Participante {{ indexItem }}: {{ participant.name }}</legend>
         <div class="participants-fields">
-            <!-- NAME -->
             <BaseInput 
                 @blur="$emit('updateParticipant', participant)" 
                 label="Nombre*" 
@@ -20,8 +19,6 @@ import exclamationMark from '../assets/images/exclamation-mark.png'
                 :editMode="editMode"
                 :participant="parentParticipant"
             />
-
-            <!-- PARTICIPANT -->
             <BaseInput 
             @blur="$emit('updateParticipant', participant)" 
                 label="Email*" 
@@ -33,8 +30,6 @@ import exclamationMark from '../assets/images/exclamation-mark.png'
                 :participant="parentParticipant"
 
             />
-
-            <!-- EXCLUDE | MULTISELECT -->
             <div class="exclude-container">
                 <label for="exclude">Excluir</label>
 

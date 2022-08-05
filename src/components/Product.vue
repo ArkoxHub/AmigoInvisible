@@ -2,7 +2,7 @@
     <!-- Print product with title, description, and URL -->
     <div class="product">
         <h2>{{ product.title }}</h2>
-        <p v-html="product.iframe"></p>
+        <div class="amazon-container" v-html="product.iframe"></div>
         <p class="product-description">
             <span class="span-color">Descripción: </span>
             {{ product.description }}
@@ -46,6 +46,12 @@ h2,
 .product-description,
 p,
 a {
+    margin-bottom: 1.8rem;
+}
+
+.amazon-container {
+    display: block;
+    padding: 0 20px;
     margin-bottom: 1.8rem;
 }
 
