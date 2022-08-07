@@ -1,13 +1,18 @@
 import { ref } from 'vue'
 
-export function getData(url) {
-    const data = ref(null)
-    const error = ref(null)
+// Fetch data async and return data and error ref
+export const fetchData = async (url) => {
+    try {
+        const data = ref(null);
+        const error = ref(null);
 
-    fetch(url)
-        .then((res) => res.json())
-        .then((json) => (data.value = json))
-        .catch((err) => (error.value = err))
-    console.log(data)
-    return { data, error }
+        const response = await fetch(url);
+        if (response.ok) data.value = await response.json();
+        else error.value = response.statusText;
+        return { data, error };
+
+    } catch (err) {
+        error.value = err.message;
+        return { data, error }
+    }
 }

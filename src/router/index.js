@@ -36,7 +36,7 @@ const routes = [
     }, ,
     {
         path: '/lista-de-deseos/:groupId/:participantId',
-        name: 'Lista de deseos privada | Sorteo del amigo invisible',
+        name: 'WishlistDashboard',
         component: WishlistDashboard
     },
     {
