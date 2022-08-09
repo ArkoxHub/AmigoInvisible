@@ -13,7 +13,6 @@ const props = defineProps({
     maxLength: { type: String, required: false },
     minLenght: { type: String, required: false },
     classLabel: { type: String, required: false },
-    showError: { type: Boolean, default: false },
     errorLabel: { type: String, required: false, default: '' },
 })
 
@@ -50,7 +49,6 @@ function updateValue(value) {
             :minlength="minLenght" 
             :maxlength="maxLength"
         >
-        <p v-if="showError">{{ errorMessage }}</p>
     </div>
 </template>
 

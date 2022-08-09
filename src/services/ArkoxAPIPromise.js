@@ -9,6 +9,5 @@ export function getData(url) {
         .then((json) => (data.value = json))
         .catch((err) => (error.value = err))
 
-    console.log(data)
     return { data, error }
 }

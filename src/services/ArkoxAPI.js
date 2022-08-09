@@ -16,3 +16,21 @@ export const fetchData = async (url) => {
         return { data, error }
     }
 }
+
+// POST METHOD
+export const postData = async (url, method, data) => {
+    try {
+        const response = await fetch(url, {
+            method: method,
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.json();
+
+    } catch (err) {
+        return { error: err }
+    }
+}

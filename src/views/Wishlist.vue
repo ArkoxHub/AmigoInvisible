@@ -49,7 +49,7 @@ async function getParticipantData(id) {
     // REDIRECT TO DASHBOARD
     const groupId = data.value._id
     const participantId = data.value.participants[0]._id;
-    router.push({ name: 'WishlistDashboard', params: { groupId: groupId, participantId: participantId } })
+    router.push({ name: 'Dashboard lista de deseos amigo invisible', params: { groupId: groupId, participantId: participantId } })
 }
 </script>
 

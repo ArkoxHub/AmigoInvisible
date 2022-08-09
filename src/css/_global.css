@@ -40,6 +40,7 @@ h2 {
 
 small {
     color: #ccc;
+    display: block;
 }
 
 /* TEXT */
@@ -62,6 +63,10 @@ small {
     text-align: center;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 .span-color,
 .span-color-link {
     color: var(--primary-color);
@@ -69,6 +74,10 @@ small {
 
 .span-color-link:hover {
     color: #333;
+}
+
+.white-font {
+    color: var(--font-text);
 }
 
 a {
@@ -99,6 +108,12 @@ a {
 }
 
 /* IMAGES */
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image-medium {
     width: 300px;
 }
@@ -215,7 +230,7 @@ select.input-field {
 }
 
 /* SPINNER */
-#spinner:not([hidden]) {
+.spinner:not([hidden]) {
     position: fixed;
     top: 0;
     left: 0;
@@ -227,7 +242,7 @@ select.input-field {
     z-index: 50;
 }
 
-#spinner::after {
+.spinner::after {
     content: "";
     width: 80px;
     height: 80px;
@@ -237,6 +252,7 @@ select.input-field {
     will-change: transform;
     animation: spin 1s infinite linear
 }
+
 
 hr {
     border: 0;
@@ -251,7 +267,13 @@ hr::before {
     font-size: 2rem;
 }
 
-
+/* CONTAINERS */
+.wrap-container {
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 1rem 0px;
+}
 
 @keyframes spin {
     from {

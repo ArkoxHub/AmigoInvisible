@@ -36,7 +36,7 @@ const routes = [
     }, ,
     {
         path: '/lista-de-deseos/:groupId/:participantId',
-        name: 'WishlistDashboard',
+        name: 'Dashboard lista de deseos amigo invisible',
         component: WishlistDashboard
     },
     {

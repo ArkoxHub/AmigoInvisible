@@ -41,7 +41,7 @@ import UniqueID from '../features/UniqueID'
         </div>
 
         <!-- SPINNER -->
-        <div hidden id="spinner"></div>
+        <div hidden class="spinner"></div>
     </section>
 </template>
 <script>
@@ -57,7 +57,7 @@ export default {
         sendMailsRequest() {
             const URL =  import.meta.env.VITE_API_URL + '/sendEmails'
 
-            const spinner = document.getElementById('spinner');
+            const spinner = document.getElementsByClassName('spinner')[0];
             spinner.removeAttribute("hidden")
             document.getElementsByClassName("container")[0].classList.add("backScene")
 
