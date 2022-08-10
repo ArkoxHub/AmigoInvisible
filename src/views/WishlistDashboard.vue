@@ -48,6 +48,8 @@ function addItemWishList() {
 function updateWishList(draw) {
     const url = import.meta.env.VITE_API_URL + '/updateDraw'
     const response = postData(url, 'PUT', draw)
+
+    // TODO: Check responses and delete console log
     console.log(response);
 }
 
@@ -91,11 +93,12 @@ function updateWishList(draw) {
             </button>
         </div>
 
-        <!-- List Paraticipant's Wishlist -->
+        <!-- Lists Paraticipant's Wishlist -->
         <ListParticipantsWishList
             :draw="data"
             :participantLogged="route.params.participantId"
         />
+
         <div class="center-image">
             <img class="image-wishlist" src="../assets/images/regalos.png" alt="Cajas de regalos">
         </div>
