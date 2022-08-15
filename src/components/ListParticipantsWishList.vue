@@ -55,6 +55,7 @@ function addItemWishList() {
             state.validationErrorMessage = ""
             emit('update-wishlist', props.draw)
             wishlistInput.value = ""
+            document.getElementsByClassName("full-width")[0].focus()
         }
     }
 }
