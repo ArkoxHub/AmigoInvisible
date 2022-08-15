@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
     TogglePopup: {
@@ -13,6 +14,32 @@ const props = defineProps({
         type: String,
     }
 })
+
+onMounted(() => {
+    document.addEventListener('keyup', closePopupListener)
+    setTimeout(() => {
+        document.addEventListener('click', closePopUpClickOutside)
+    }, 100)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('click', closePopUpClickOutside)
+    document.removeEventListener('keyup', closePopupListener)
+})
+
+function closePopupListener($event) {
+    if ($event.key === 'Escape') {
+        props.TogglePopup()
+    }
+}
+
+function closePopUpClickOutside(event) {
+        const popup = document.getElementsByClassName("popup-inner")[0];
+        const popupIsClicked = popup.contains(event.target);
+        if (!popupIsClicked) {
+            props.TogglePopup()
+        }
+}
 
 </script>
 
@@ -53,7 +80,7 @@ const props = defineProps({
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 50;
+    z-index: 99;
     background-color: #8b8b8b6b;
     text-align: center;
 }

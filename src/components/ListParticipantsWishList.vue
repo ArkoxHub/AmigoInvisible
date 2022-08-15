@@ -1,7 +1,10 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, reactive } from 'vue';
 import Popup from '../components/Popup.vue';
+import BaseInput from '../components/form/BaseInput.vue';
 
+const emit = defineEmits(['update-wishlist'])
+const state = reactive({ validationErrorMessage: ""})
 const props = defineProps({
     draw: {
         type: Object,
@@ -15,11 +18,20 @@ const props = defineProps({
 
 const participant = ref('')
 const wishlisSelectedItem = ref('')
+const wishlistInput = ref('')
 
 onMounted(() => {
     window.scrollTo(0, 0);
+
+    // Current participant
     participant.value = props.draw.participants.find(participant => participant._id === props.participantLogged)
+
+    // Order draw by wishlist length
     props.draw.participants.sort((a, b) => b.wishlist.length - a.wishlist.length)
+
+    // Put current participant at the top of the list and remove it from the list
+    const currentParticipant = props.draw.participants.splice(props.draw.participants.indexOf(participant.value), 1)
+    props.draw.participants.unshift(currentParticipant[0])
 })
 
 function setWishListItemSelectedAndTogglePopUp(trigger, item) {
@@ -27,9 +39,30 @@ function setWishListItemSelectedAndTogglePopUp(trigger, item) {
     togglePopup(trigger)
 }
 
+// Add item to participant's wishlist array and update API
+function addItemWishList() {
+    // Validation
+    if (wishlistInput.value.trim() === '') {
+        state.validationErrorMessage = "Introduce un regalo"
+        document.getElementsByClassName("full-width")[0].focus()
+        return false;
+    } else {
+        if (participant.value.wishlist.length >= 10) {
+            state.validationErrorMessage = "Has introducido el máximo de regalos"
+            return false;
+        } else {
+            participant.value.wishlist.push(wishlistInput.value)
+            state.validationErrorMessage = ""
+            emit('update-wishlist', props.draw)
+        }
+    }
+}
+
 function deleteWishlistItem(participant, item) {
     participant.wishlist.splice(participant.wishlist.indexOf(item), 1)
     togglePopup('buttonTrigger')
+    
+    emit('update-wishlist', props.draw)
 }
 
 // POPUP
@@ -45,9 +78,10 @@ function togglePopup(trigger) {
 </script>
 
 <template>
+    <h2>Hola, {{ participant.name }}.</h2>
     <!-- Draw Card -->
     <div class="wrap-container">
-        <h2 class="span-color">Información del sorteo</h2>
+        <h2 class="span-color">Información del sorteo:</h2>
         <p class="span-color">Título: <span class="white-font"> {{ draw.title }}</span></p>
         <p class="span-color" v-if="draw.price">Precio: <span class="white-font"> {{ draw.price }}</span></p>
         <p class="span-color" v-if="draw.date">Fecha: <span class="white-font"> {{ draw.date }}</span></p>
@@ -72,6 +106,29 @@ function togglePopup(trigger) {
                     </span>
                 </li>
             </ul>
+            <template v-if="participant._id == participantLogged">
+                <div class="add-gifts-container">
+                    <BaseInput 
+                        label="Añade regalos a tu lista"
+                        placeholder="Por ejemplo: 'Libro un mundo nuevo ahora'"
+                        classLabel="span-color" 
+                        className="full-width" 
+                        v-model="wishlistInput"
+                        :errorLabel="state.validationErrorMessage"
+                        minLenght="3"
+                        maxLength="40"
+                        @keydown.enter="addItemWishList()"
+                    />
+                    <button 
+                        @click="addItemWishList()"
+                        class="primary-button-link full-width" 
+                        type="text"
+                    >
+                        <span>Añadir</span>
+                    </button>
+                    <small>*Puedes agregar hasta un máximo de 10 entradas.</small>
+                </div>
+            </template>
         </div>
     </template>
 
@@ -87,10 +144,6 @@ function togglePopup(trigger) {
 </template>
 
 <style scoped>
-.main-container h2 {
-    text-transform: uppercase;
-}
-
 .wishlist-participant-name {
     border-bottom: 1px solid var(--primary-color);
     padding-bottom: 15px;
@@ -135,5 +188,29 @@ function togglePopup(trigger) {
 
 .delete-wishlist-item:hover > .wrap-container > ul li {
     background-color: red;
+}
+
+.add-gifts-container {
+    margin-top: 20px;
+}
+
+.add-gifts-container small {
+    margin: 10px 0;
+}
+
+.add-gifts-container button {
+    margin-top: 10px;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .add-gifts-container small {
+        margin-bottom: 10px;
+    }
+
+    .add-gifts-container button {
+        margin-top: auto;
+    }
+    
 }
 </style>

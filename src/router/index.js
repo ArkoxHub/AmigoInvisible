@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
 import Gifts from '../views/Gifts.vue'
-import Wishlist from '../views/Wishlist.vue'
+import WishlistLogin from '../views/WishlistLogin.vue'
 import WishlistDashboard from '../views/WishlistDashboard.vue'
 import Recovery from '../views/Recovery.vue'
 import DrawSuccess from '../views/DrawSuccess.vue'
@@ -32,7 +32,7 @@ const routes = [
     {
         path: '/lista-de-deseos',
         name: 'Lista de deseos amigo invisible',
-        component: Wishlist
+        component: WishlistLogin
     }, ,
     {
         path: '/lista-de-deseos/:groupId/:participantId',
