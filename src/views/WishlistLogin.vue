@@ -1,5 +1,5 @@
 <script setup>
-import BaseInput from '../components/form/baseinput.vue';
+import BaseInput from '../components/form/Baseinput.vue';
 import { onMounted, ref, reactive } from 'vue'
 import { fetchData } from '../services/ArkoxAPI.js'
 import router from '../router';
@@ -83,7 +83,7 @@ async function getParticipantData(id) {
     <div class="wishlist-text-container">
         <p>Una vez hayas realizado el sorteo del amigo invisible en <router-link to="/" class="span-color">amigoinvisible.net</router-link>, podréis acceder a una lista en la que cada participante podrá introducir los regalos que le gustaría recibir de manera anónima.</p>
         <p>Inserta el código que has recibido en el correo electrónico del sorteo. El identificador es <span class="span-color">personal e intransferible</span>, cada participante tiene el suyo único.</p>
-        <p>El contenido que la lista solo será visible para los participantes del sorteo en dicho e-mail.</p>
+        <p>El contenido que la lista solo será visible para los participantes del sorteo realizado.</p>
     </div>
     
     <div class="center-container">
