@@ -19,7 +19,7 @@
             <p>Accede ahora a la <a @click="redirectToWishlist()" class="router-link">lista de deseos</a> grupal.</p>
             <p>Ahora que ya sabes el resultado del amigo invisible, puedes crear una lista de regalos que te gustaría recibir cuando llegue el día de entregar los regalos.</p>
             <p>Esta lista es privada, solo los participantes de vuestro sorteo pueden consultarla.</p>
-            <p>También puedes acceder insertando tu identificación de participante <span class="span-color">{{ groupId }}</span> accediendo 
+            <p>También puedes acceder insertando tu identificación de participante <span class="span-color">{{ user._id }}</span> accediendo 
             <router-link class="router-link" to="/lista-de-deseos">en este enlace</router-link>.</p>
         </div>
 
