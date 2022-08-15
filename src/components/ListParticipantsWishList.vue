@@ -54,6 +54,7 @@ function addItemWishList() {
             participant.value.wishlist.push(wishlistInput.value)
             state.validationErrorMessage = ""
             emit('update-wishlist', props.draw)
+            wishlistInput.value = ""
         }
     }
 }

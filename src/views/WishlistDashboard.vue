@@ -24,9 +24,6 @@ const state = reactive({ validationErrorMessage: ""})
 function updateWishList(draw) {
     const url = import.meta.env.VITE_API_URL + '/updateDraw'
     const response = postData(url, 'PUT', draw)
-
-    // TODO: Check responses and delete console log
-    console.log(response);
 }
 
 </script>

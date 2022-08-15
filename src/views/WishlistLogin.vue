@@ -1,7 +1,8 @@
 <script setup>
+import router from '../router';
 import { onMounted, ref, reactive } from 'vue'
 import { fetchData } from '../services/ArkoxAPI.js'
-import router from '../router';
+import BaseInput from '../components/form/BaseInput.vue';
 
 onMounted(() => {
     window.scrollTo(0, 0);
@@ -61,7 +62,7 @@ async function getParticipantData(id) {
         <BaseInput 
             classLabel="span-color" 
             label="Introduce el código de participante" 
-            placeholder="Ejemplo: 62d2c909f84a973f386fae49" 
+            placeholder="Ejemplo: 62d2c909f84a9715gt93gn75" 
             className="full-width" 
             v-model="inputParticipant" 
             @keyup.enter="validateParticipantInput()"
@@ -90,15 +91,6 @@ async function getParticipantData(id) {
     </div>
 </template>
 
-<script>
-import  BaseInput from '../components/form/BaseInput.vue';
-
-export default {
-    components: {
-        BaseInput
-    }
-}
-</script>
 
 <style scoped>
 .wishlist-container {
