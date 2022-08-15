@@ -1,5 +1,4 @@
 <script setup>
-import BaseInput from '../components/form/Baseinput.vue';
 import { onMounted, ref, reactive } from 'vue'
 import { fetchData } from '../services/ArkoxAPI.js'
 import router from '../router';
@@ -91,6 +90,15 @@ async function getParticipantData(id) {
     </div>
 </template>
 
+<script>
+import  BaseInput from '../components/form/BaseInput.vue';
+
+export default {
+    components: {
+        BaseInput
+    }
+}
+</script>
 
 <style scoped>
 .wishlist-container {
