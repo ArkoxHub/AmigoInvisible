@@ -16,7 +16,7 @@ import Info from '../views/Info.vue'
 const routes = [
     {
         path: '/',
-        name: 'Amigo invisible online. Generador aleatorio para el sorteo del amigo invisible vía email gratis. Regalos para el amigo invisible.',
+        name: 'Amigo invisible online 🎁 Sorteo amigo invisible gratis 💗 Regalos amigo invisible ✅ Lista de deseos amigo invisible',
         component: Home
     },
     {

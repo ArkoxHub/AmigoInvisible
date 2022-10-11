@@ -14,7 +14,7 @@ import exclamationMark from '../assets/images/exclamation-mark.png'
                 label="Nombre*" 
                 type="text"
                 v-model="participant.name" 
-                minLength="3" maxLength="15" 
+                minLength="3" maxLength="30" 
                 placeholder="Nombre"
                 :editMode="editMode"
                 :participant="parentParticipant"
