@@ -12,6 +12,7 @@
     "@vueform/multiselect": "^2.4.2",
     "canvas-confetti": "^1.5.1",
     "pinia": "^2.0.18",
+    "sass": "^1.55.0",
     "vue": "^3.2.25",
     "vue-cookie-law": "^1.13.3",
     "vue-router": "^4.0.15"
