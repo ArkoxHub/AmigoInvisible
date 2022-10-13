@@ -81,9 +81,11 @@ async function getParticipantData(id) {
     </div>
 
     <div class="wishlist-text-container">
-        <p>Una vez hayas realizado el sorteo del amigo invisible en <router-link to="/" class="span-color">amigoinvisible.net</router-link>, podréis acceder a una lista en la que cada participante podrá introducir los regalos que le gustaría recibir de manera anónima.</p>
-        <p>Inserta el código que has recibido en el correo electrónico del sorteo. El identificador es <span class="span-color">personal e intransferible</span>, cada participante tiene el suyo único.</p>
-        <p>El contenido que la lista solo será visible para los participantes del sorteo realizado.</p>
+        <ul>
+            <li class="styled-li">Una vez hayas realizado el sorteo del amigo invisible en <router-link to="/" class="span-color">amigoinvisible.net</router-link>, podréis acceder a una lista en la que cada participante podrá introducir los regalos que le gustaría recibir de manera anónima.</li>
+            <li class="styled-li">Inserta el código que has recibido en el correo electrónico del sorteo. El identificador es <span class="span-color">personal e intransferible</span>, cada participante tiene el suyo único.</li>
+            <li class="styled-li">El contenido que la lista solo será visible para los participantes del sorteo realizado.</li>
+        </ul>
     </div>
     
     <div class="center-container">
@@ -103,6 +105,25 @@ async function getParticipantData(id) {
 
 #button-wishlist {
     margin-top: .5rem;
+}
+
+ul li {
+    padding: .5rem 1rem;
+}
+
+ul li::before {
+    content: "\2022";
+    /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: var(--primary-color);
+    /* Change the color */
+    font-weight: bold;
+    /* If you want it to be bold */
+    display: inline-block;
+    /* Needed to add space between the bullet and the text */
+    width: 1em;
+    /* Also needed for space (tweak if needed) */
+    margin-left: -1em;
+    /* Also needed for space (tweak if needed) */
 }
 
 p {

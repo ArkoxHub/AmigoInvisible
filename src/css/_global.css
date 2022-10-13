@@ -107,6 +107,25 @@ a {
     opacity: 1;
 }
 
+.styled-li {
+    padding: .5rem 1rem;
+}
+
+.styled-li::before {
+    content: "\2022";
+    /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: var(--primary-color);
+    /* Change the color */
+    font-weight: bold;
+    /* If you want it to be bold */
+    display: inline-block;
+    /* Needed to add space between the bullet and the text */
+    width: 1em;
+    /* Also needed for space (tweak if needed) */
+    margin-left: -1em;
+    /* Also needed for space (tweak if needed) */
+}
+
 /* IMAGES */
 .center-image {
     display: flex;
@@ -198,6 +217,10 @@ a {
     background-color: #9b0a0aa8;
 }
 
+#button-wishlist {
+    margin-top: .5rem;
+}
+
 /** FORM **/
 .input-field {
     border: none;
@@ -279,6 +302,27 @@ hr::before {
     font-size: 2rem;
 }
 
+/* MARGINS */
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
 /* CONTAINERS */
 .wrap-container {
     border: 1px solid var(--primary-color);
@@ -295,6 +339,14 @@ hr::before {
     to {
         transform: rotate(360deg);
     }
+}
+
+.wishlist-container {
+    border: 1px solid var(--primary-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin: 1.5rem 0;
 }
 
 @media only screen and (max-width: 767px) {

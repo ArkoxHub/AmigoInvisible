@@ -77,7 +77,7 @@ onMounted(() => {
         <p>El Titular podrá tratar los Datos Personales del Usuario, si se cumple una de las siguientes condiciones:</p>
 
         <ul>
-            <li>Cuando los Usuarios hayan dado su consentimiento para una o más finalidades específicas. Aviso: Al
+            <li class="styled-li">Cuando los Usuarios hayan dado su consentimiento para una o más finalidades específicas. Aviso: Al
                 amparo de
                 varias legislaciones diferentes, el Titular podrá estar autorizado a tratar los Datos Personales hasta
                 que el
@@ -86,13 +86,13 @@ onMounted(() => {
                 base jurídica. Sin embargo, esto no será aplicable cuando el tratamiento de los Datos Personales esté
                 sujeto a
                 la normativa europea en materia de protección de Datos Personales;</li>
-            <li>Cuando la obtención de Datos sea necesaria para el cumplimiento de un contrato entre el Usuario y/o
+            <li class="styled-li">Cuando la obtención de Datos sea necesaria para el cumplimiento de un contrato entre el Usuario y/o
                 cualquier otra obligación precontractual del mismo;</li>
-            <li>Cuando el tratamiento sea necesario para el cumplimiento de una obligación legal de obligado
+            <li class="styled-li">Cuando el tratamiento sea necesario para el cumplimiento de una obligación legal de obligado
                 cumplimiento por parte del Usuario;</li>
-            <li>Cuando el tratamiento esté relacionado con una tarea ejecutada en interés público o en el ejercicio de
+            <li class="styled-li">Cuando el tratamiento esté relacionado con una tarea ejecutada en interés público o en el ejercicio de
                 competencias oficiales otorgadas al Titular;</li>
-            <li>Cuando el tratamiento sea necesario con el fin de un interés legítimo perseguido por el Titular o un
+            <li class="styled-li">Cuando el tratamiento sea necesario con el fin de un interés legítimo perseguido por el Titular o un
                 tercero.</li>
         </ul>
         <p>En cualquier caso, el Titular está a su disposición para definir las bases jurídicas específicas que se
@@ -131,10 +131,10 @@ onMounted(() => {
 
         <p>Por lo tanto:</p>
         <ul>
-            <li>Los Datos Personales recogidos para la formalización de un contrato entre el Titular y el Usuario
+            <li class="styled-li">Los Datos Personales recogidos para la formalización de un contrato entre el Titular y el Usuario
                 deberán
                 conservarse como tales hasta en tanto dicho contrato se haya formalizado por completo.</li>
-            <li>Los Datos Personales recogidos en legítimo interés del Titular deberán conservarse durante el tiempo
+            <li class="styled-li">Los Datos Personales recogidos en legítimo interés del Titular deberán conservarse durante el tiempo
                 necesario
                 para cumplir con dicha finalidad. Los Usuarios pueden encontrar información específica relacionada con
                 el
@@ -174,11 +174,11 @@ onMounted(() => {
         <p>Los Datos Personales se recogen para las siguientes finalidades y utilizando los siguientes servicios:</p>
 
         <ul>
-            <li><span class="span-color">Estadísticas</span><br><b>Google Analytics.</b> Datos personales: Datos de uso: Rastreadores.</li>
-            <li><span class="span-color">Gestión de Etiquetas</span><br><b>Google Tag Manager.</b> Datos personales: Datos de uso.</li>
-            <li><span class="span-color">Optimización y distribución del tráfico</span><br><b>Cloudflare.</b> Datos personales: Distintas clases de Datos, según se especifíca en la Política de Privacidad del servicio.</li>
-            <li><span class="span-color">PayPal</span></li>
-            <li><span class="span-color">Amazon Advertising</span></li>
+            <li class="styled-li"><span class="span-color">Estadísticas</span><br><b>Google Analytics.</b> Datos personales: Datos de uso: Rastreadores.</li>
+            <li class="styled-li"><span class="span-color">Gestión de Etiquetas</span><br><b>Google Tag Manager.</b> Datos personales: Datos de uso.</li>
+            <li class="styled-li"><span class="span-color">Optimización y distribución del tráfico</span><br><b>Cloudflare.</b> Datos personales: Distintas clases de Datos, según se especifíca en la Política de Privacidad del servicio.</li>
+            <li class="styled-li"><span class="span-color">PayPal</span></li>
+            <li class="styled-li"><span class="span-color">Amazon Advertising</span></li>
         </ul>
 
         <hr>
@@ -190,27 +190,27 @@ onMounted(() => {
         <p>Especialmente, los Usuarios tienen derecho a hacer lo siguiente:</p>
 
         <ul>
-            <li><b>Retirar su consentimiento en cualquier momento.</b> Los Usuarios tienen derecho a retirar su consentimiento
+            <li class="styled-li"><b>Retirar su consentimiento en cualquier momento.</b> Los Usuarios tienen derecho a retirar su consentimiento
                 cuando
                 lo hubieran concedido con anterioridad para el tratamiento de sus Datos Personales.</li>
-            <li><b>Objeción al tratamiento de sus Datos.</b> Los Usuarios tienen derecho a oponerse al tratamiento de sus Datos
+            <li class="styled-li"><b>Objeción al tratamiento de sus Datos.</b> Los Usuarios tienen derecho a oponerse al tratamiento de sus Datos
                 si
                 dicho tratamiento se lleva a cabo con arreglo a una base jurídica distinta del consentimiento. Para más
                 información pueden dirigirse a la sección correspondiente más adelante.</li>
-            <li><b>Acceso a sus Datos.</b> Los Usuarios tienen derecho a conocer si sus Datos serán tratados por el Titular, a
+            <li class="styled-li"><b>Acceso a sus Datos.</b> Los Usuarios tienen derecho a conocer si sus Datos serán tratados por el Titular, a
                 obtener
                 información sobre ciertos aspectos del tratamiento, además de obtener una copia de los Datos objeto del
                 tratamiento.</li>
-            <li><b>Verificar y solicitar la modificación.</b> Los Usuarios tienen derecho a verificar la exactitud de sus Datos
+            <li class="styled-li"><b>Verificar y solicitar la modificación.</b> Los Usuarios tienen derecho a verificar la exactitud de sus Datos
                 y
                 solicitar que los mismos se actualicen o corrijan.</li>
-            <li><b>Restringir el tratamiento de sus Datos.</b> Los Usuarios tienen derecho, en ciertos supuestos, a restringir
+            <li class="styled-li"><b>Restringir el tratamiento de sus Datos.</b> Los Usuarios tienen derecho, en ciertos supuestos, a restringir
                 el
                 tratamiento de sus Datos. En ese supuesto, el Titular procesará sus Datos con el único propósito de
                 almacenarlos.</li>
-            <li><b>Borrar o eliminar los Datos Personales.</b> Los Usuarios tienen derecho, en ciertos supuestos, a obtener la
+            <li class="styled-li"><b>Borrar o eliminar los Datos Personales.</b> Los Usuarios tienen derecho, en ciertos supuestos, a obtener la
                 eliminación de sus Datos por parte del Titular.</li>
-            <li><b>Recibir sus Datos y transferirlos a otro responsable.</b> Los Usuarios tienen derecho a recibir sus Datos en
+            <li class="styled-li"><b>Recibir sus Datos y transferirlos a otro responsable.</b> Los Usuarios tienen derecho a recibir sus Datos en
                 un
                 formato estándar, estructurado, mecánicamente legible y, si fuera técnicamente posible, a que se dé
                 traslado de
@@ -220,7 +220,7 @@ onMounted(() => {
                 Usuario, en
                 un contrato del que el Usuario forme parte o que aparezca en las obligaciones precontractuales del
                 mismo.</li>
-            <li><b>Poner una reclamación.</b> Los Usuarios tienen derecho a poner una reclamación ante la autoridad competente
+            <li class="styled-li"><b>Poner una reclamación.</b> Los Usuarios tienen derecho a poner una reclamación ante la autoridad competente
                 en
                 materia de protección de datos de carácter personal.</li>
         </ul>
@@ -341,24 +341,5 @@ hr {
     margin-bottom: 20px;
     width: 80%;
     height: 1px;
-}
-
-ul li {
-    padding: .5rem 1rem;
-}
-
-ul li::before {
-    content: "\2022";
-    /* Add content: \2022 is the CSS Code/unicode for a bullet */
-    color: var(--primary-color);
-    /* Change the color */
-    font-weight: bold;
-    /* If you want it to be bold */
-    display: inline-block;
-    /* Needed to add space between the bullet and the text */
-    width: 1em;
-    /* Also needed for space (tweak if needed) */
-    margin-left: -1em;
-    /* Also needed for space (tweak if needed) */
 }
 </style>
