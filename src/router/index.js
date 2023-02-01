@@ -40,7 +40,7 @@ const routes = [
         component: WishlistDashboard
     },
     {
-        path: '/recuperacion-sorteo',
+        path: '/recuperacion-sorteo/:id?',
         name: 'Recuperación sorteo amigo invisible',
         component: Recovery
     },

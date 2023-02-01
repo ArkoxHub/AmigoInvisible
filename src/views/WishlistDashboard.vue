@@ -45,7 +45,7 @@ function updateWishList(draw) {
     <div v-else-if="data">
         <!-- Lists Paraticipant's Wishlist -->
         <ListParticipantsWishList
-            :draw="data"
+            :draw="data.draw"
             :participantLogged="route.params.participantId"
             @update-wishlist="updateWishList"
         />

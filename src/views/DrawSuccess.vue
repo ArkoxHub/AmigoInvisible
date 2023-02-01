@@ -8,7 +8,6 @@
             lo podrán ver.</p>
         <br>
         <p>Muchas gracias por participar en amigoinvisible.net 😀</p>
-        <!--    TODO: WhatsApp share -->
 
         <!-- BUTTONS -->
         <div class="draw-actions">

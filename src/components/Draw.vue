@@ -10,7 +10,7 @@
                 label="Título del sorteo*" 
                 type="text" 
                 placeholder="Nombre del sorteo" 
-                v-model="draw.name"
+                v-model="draw.title"
                 className="input-header" 
                 maxLength="50"
                 :errorLabel="titleError"
@@ -34,7 +34,7 @@
             />
         </div>
 
-        <!-- PARTICIPANTS -->
+        <!-- PARTICIPANTS LOOP -->
         <div 
             :id="'participant' + (item.participantID)" 
             class="participant" 
@@ -63,7 +63,6 @@
                 @click.prevent="addParticipantCard(); randomGradient();"
             >
                 <span>Añadir</span>
-                <!-- <img :src="addUser" class="draw-icon" alt="Añadir usuario" /> -->
             </button>
             <button 
                 class="primary-button-link" 
@@ -71,7 +70,6 @@
                 type="text"
             >
                 <span>Continuar</span>
-                <!-- <img :src="next" class="draw-icon" alt="Siguiente paso" /> -->
             </button>
         </div>
 
@@ -90,25 +88,21 @@ import BaseInput from './form/BaseInput.vue'
 import Participant from './Participant.vue'
 import Summary from './Summary.vue'
 import UniqueID from '../features/UniqueID'
+import { useDrawStore } from '../stores/DrawStore'
+import { mapStores } from 'pinia'
 
 export default {
+    computed: {
+        ...mapStores(useDrawStore),
+        getTotalParticipants() {
+            return this.draw.participants.length
+        }
+    },
     components: { BaseInput, Participant, Summary },
     emits: ['toggleInfo'],
     data() {
         return {
-            draw: {
-                name: '',
-                price: '',
-                date: '',
-                comments: '',
-                host: '',
-                participants: [
-                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
-                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] },
-                    { participantID: UniqueID().getID(), name: "", email: "", exclude: [], wishlist: [], result: '', errors: [] }
-                ],
-            },
-            totalParticipants: 3,
+            draw: "",
             backgroundsColors: [],
             participantsMultiSelect: [],
             validationErrors: true,
@@ -119,8 +113,16 @@ export default {
         }
     },
     beforeMount() {
-        for (var i = 0; i < this.totalParticipants; i++) {
+        this.draw = this.drawStore.getDrawStored
+        for (var i = 0; i < this.draw.participants.length; i++) {
             this.randomGradient();
+        }
+
+        // If we're recovering data, load exclude participants from the new draw
+        if (this.draw.participants[0].name != '') {
+            this.draw.participants.forEach(element => {
+                this.participantsMultiSelect.push(element.name)
+            });
         }
     },
     methods: {
@@ -128,7 +130,7 @@ export default {
             let isValidated = false
 
             // Validate form title   
-            if (this.draw.name.trim() === '') {
+            if (this.draw.title.trim() === '') {
                 this.titleError = 'Campo obligatorio'
                 alert("El campo 'Título del sorteo' es obligatorio")
                 isValidated = false
@@ -224,11 +226,6 @@ export default {
                 this.draw.participants = [];
                 this.draw.participants = participants;
                 this.draw.host = document.querySelector(".participant .input-field").value;
-                // console.log("==================");
-                // this.draw.participants.forEach(participant => {
-                //     console.log(participant.name + ': ' + participant.result);
-                // })
-                // console.log("==================");
                 this.showSummary = true;
                 this.$emit('toggleInfo', false);
                 window.scrollTo(0, 0);
@@ -264,7 +261,7 @@ export default {
 
         validateTitle() {
             if (this.titleError != '') {
-                this.draw.name.trim() === '' ? this.titleError = 'Campo obligatorio' : this.titleError = ''
+                this.draw.title.trim() === '' ? this.titleError = 'Campo obligatorio' : this.titleError = ''
             }
         },
 
@@ -294,7 +291,6 @@ export default {
                     let p = { value: participant.participantID, label: participant.name, id: participant.participantID }
                     this.participantsMultiSelect.push(p)
                 }
-                // TODO - Add logic to update exclude list when participant change name or it's deleted from draw
             }
         },
 

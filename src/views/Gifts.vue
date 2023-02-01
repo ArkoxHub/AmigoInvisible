@@ -30,8 +30,6 @@ onMounted(() => {
     </section>
 
     <!-- PRODUCTS  -->
-    <!-- TODO: CREATE COMPONENT TO SHOW ALL THE COMPONETS SENDING PROPS LIKE PRICE, DESC, LINK... -->
-    <!-- TODO: INFINITE SCROLL -->
     <section class="products">
         <template v-for="(item, index) in getProductsCategorySelected" :key="index">
             <Product :product="item"/>

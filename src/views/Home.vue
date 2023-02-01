@@ -1,7 +1,7 @@
 <script setup>
-import uno from '../assets/images/uno.png'
-import dos from '../assets/images/dos.png'
-import tres from '../assets/images/tres.png'
+import imageOfNumber1 from '../assets/images/uno.png'
+import imageOfNumber2 from '../assets/images/dos.png'
+import imageOfNumber3 from '../assets/images/tres.png'
 import Draw from '../components/Draw.vue'
 </script>
 
@@ -12,9 +12,9 @@ import Draw from '../components/Draw.vue'
         <div class="steps-to-do">
             <p class="span-text">Pasos a seguir:</p>
             <ul class="home-steps-todo">
-                <li><img :src="uno" alt="Imagen número 1" class="step-icon">Rellena los siguientes campos.</li>
-                <li><img :src="dos" alt="Imagen número 2" class="step-icon">Pula el botón continuar y revisa que todo esté correcto.</li>
-                <li><img :src="tres" alt="Imagen número 2" class="step-icon">Al finalizar, cada participante recibirá un correo electrónico con el resultado del sorteo.</li>
+                <li><img :src="imageOfNumber1" alt="Imagen número 1" class="step-icon">Rellena los siguientes campos.</li>
+                <li><img :src="imageOfNumber2" alt="Imagen número 2" class="step-icon">Pula el botón continuar y revisa que todo esté correcto.</li>
+                <li><img :src="imageOfNumber3" alt="Imagen número 2" class="step-icon">Al finalizar, cada participante recibirá un correo electrónico con el resultado del sorteo.</li>
             </ul>
         </div>
 
@@ -39,10 +39,7 @@ export default {
         toggleInfo() {
             this.showInfo = !this.showInfo
         }
-    },
-    mounted() {
-        window.scrollTo(0, 0)
-    },
+    }
 }
 </script>
 

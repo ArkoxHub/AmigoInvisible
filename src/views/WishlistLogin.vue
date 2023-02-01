@@ -1,11 +1,18 @@
 <script setup>
 import router from '../router';
+import { useRoute } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
 import { fetchData } from '../services/ArkoxAPI.js'
 import BaseInput from '../components/form/BaseInput.vue';
 
+const route = useRoute()
+
 onMounted(() => {
     window.scrollTo(0, 0);
+
+    if (route.params.id)  {
+        console.log(route.params.id);
+    }
 })
 
 const inputParticipant = ref('')

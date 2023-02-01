@@ -98,17 +98,17 @@ export default {
     },
     data() {
         return {
+            draw: "",
             participant: {
                 participantID: this.parentParticipant.participantID,
-                name: '',
-                email: '',
-                exclude: [],
+                name: this.parentParticipant.name,
+                email: this.parentParticipant.email,
+                exclude: [this.parentParticipant.exclude],
                 wishlist: [],
                 errors: [],
             },
         }
     },
-
     computed: {
         options() {
             return this.participants.filter(item => item.id != this.parentParticipant.participantID)

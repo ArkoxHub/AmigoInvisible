@@ -11,7 +11,7 @@ import UniqueID from '../features/UniqueID'
         <div class="card-summary">
             <div class="card-header">
                 <h2 class="subTitle">Sorteo</h2>
-                <p><strong class="span-text">- Título: </strong> {{ draw.name }}</p>
+                <p><strong class="span-text">- Título: </strong> {{ draw.title }}</p>
                 <p v-if="draw.price != ''"><strong class="span-text">- Precio orientativo: </strong> {{ draw.price }}</p>
                 <p v-if="draw.date != ''"><strong class="span-text">- Fecha: </strong> {{ draw.date }}</p>
             </div>
