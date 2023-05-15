@@ -103,9 +103,10 @@ export default {
                 participantID: this.parentParticipant.participantID,
                 name: this.parentParticipant.name,
                 email: this.parentParticipant.email,
-                exclude: [this.parentParticipant.exclude],
+                exclude: this.parentParticipant.exclude,
                 wishlist: [],
                 errors: [],
+                result: ''
             },
         }
     },
@@ -113,7 +114,7 @@ export default {
         options() {
             return this.participants.filter(item => item.id != this.parentParticipant.participantID)
         }
-    },
+    }
 }
 </script>
 

@@ -278,6 +278,8 @@ export default {
                 // Add exclude Participant List Management
                 if (participant.name !== '' && participant.email !== '')
                     this.addNewExcludeParticipant(participant)
+            } else {
+                alert("No se ha podido actualizra el participante.")
             }
         },
 

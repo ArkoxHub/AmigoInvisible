@@ -21,7 +21,7 @@ import UniqueID from '../features/UniqueID'
                 <ul class="participant-list" v-for="(participant, index) in draw.participants">
                     <li><strong class="span-text">Participante {{ index + 1 }}: </strong> {{ participant.name }}</li>
                     <li><strong class="span-text">Email: </strong>: {{ participant.email }}</li>
-                    <li v-if="participant.exclude != ''"><strong class="span-text">Exclusiones: </strong>{{ participant.exclude }}</li>
+                    <li v-if="participant.exclude != ''"><strong class="span-text">Exclusiones: </strong>{{ participant.exclude.length }}</li>
                 </ul>
             </div>
         </div>
